@@ -11,10 +11,10 @@ class TeacherAdmin(admin.ModelAdmin):
     actions_on_bottom = True
 
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ['s_name', 's_id', 's_birthday','s_status', 's_into']
-    search_fields = ['s_name']
+    list_display = ['s_name', 's_id', 's_birthday', 's_into']
+    search_fields = ['s_name', 's_id', 's_birthday', 's_into']
     list_per_page = 10
-    list_filter = ['s_id', 's_name']
+    list_filter = ['isDelete']
 
 
 class CourseAdmin(admin.ModelAdmin):

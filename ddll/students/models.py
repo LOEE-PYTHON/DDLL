@@ -28,7 +28,7 @@ class StudentInfo(models.Model):
     s_phone = models.CharField(u'手机号码', max_length=20, default='')
     s_status = models.BooleanField(u'在读状态', default=True)
     s_into = models.DateField(u'报名日期', )
-    s_note = models.TextField(u'备注', )
+    s_note = models.TextField(u'备注', default="")
     isDelete = models.BooleanField(u'是否删除', default=False)
     stu_manager1 = models.Manager()
     stu_manager2 = StudentManager()

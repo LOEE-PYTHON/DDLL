@@ -1,0 +1,20 @@
+
+.s_form{
+    margin: 10px 0px;
+}
+
+.s_id{
+    margin: 20px 0px;
+}
+
+.s_id span{
+    vert-align: top;
+}
+
+.s_info li{
+    margin: 20px;
+}
+
+.s_info{
+    align-content: center;
+}

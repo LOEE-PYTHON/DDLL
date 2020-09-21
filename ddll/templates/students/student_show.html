@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生信息查询</title>
+    <link rel="stylesheet" href="../../static/css/reset.css">
+    <link rel="stylesheet" href="../../static/css/student.css">
+</head>
+<body>
+<form action="/students/student_query/" method="get">
+    <input type="text" name="query" id="query" value="">
+    <input type="submit" value="搜索">
+    <a href="/students/student_into/"><input type="button" value="新增"></a>
+</form>
+<ul class="s_info">
+<!--    <li>学号：{{s_id}}<br></li>-->
+<!--    <li>姓名：{{ s_name}}</li>-->
+<!--    <li>性别：{{s_gender}}<br></li>-->
+<!--    <li>报名时间：{{s_into}}<br></li>-->
+<!--    <li>手机号码：{{s_phone}}<br></li>-->
+<!--    <li>学员状态：{{s_status}}<br></li>-->
+<!--    <li>备注：{{s_note}}<br></li>-->
+    <li>姓名：{{pk.s_name}}</li>
+    <li>学号：{{pk.s_id}}</li>
+    <li>性别：{{pk.s_gender}}</li>
+    <li>报名时间：{{pk.s_into}}</li>
+    <li>电话号码：{{pk.s_phone}}</li>
+    <li>状态：{{pk.s_status}}</li>
+</ul>
+</body>
+</html>
