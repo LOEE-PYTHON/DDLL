@@ -45,13 +45,20 @@ class StudentClassAdmin(admin.ModelAdmin):
     list_filter = ['kc_id']
 
 
+class ClassDetailInfoAdmin(admin.ModelAdmin):
+    list_display = ['kcls_id_id', 's_id_id', 'cd_note']
+    search_fields = ['kcls_id_id', 's_id_id', 'cd_note']
+    list_per_page = 10
+    list_filter = ['kcls_id_id']
+
+
 admin.site.register(StudentInfo, StudentAdmin)
 admin.site.register(CourseInfo, CourseAdmin)
 admin.site.register(TeacherInfo, TeacherAdmin)
 admin.site.register(MoneyInfo, MoneyAdmin)
 admin.site.register(ClassInfo, ClassAdmin)
 admin.site.register(StudentClassInfo,StudentClassAdmin)
-
+admin.site.register(ClassDetailInfo, ClassDetailInfoAdmin)
 
 
 

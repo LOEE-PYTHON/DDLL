@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生信息查询</title>
+    <link rel="stylesheet" href="../../static/css/reset.css">
+    <link rel="stylesheet" href="../../static/css/student.css">
+</head>
+<body>
+<!--<form action="/students/student_view_handle/" method="get">-->
+<!--    <input type="text" name="s_id" id="s_id" >-->
+<!--    <input type="submit" value="搜索">-->
+<!--&lt;!&ndash;    <a href="/students/student_into/"><input type="button" value="新增"></a>&ndash;&gt;-->
+<!--</form>-->
+<br>
+<div class="person_info">学生基本信息</div>
+<table border="1">
+    <tr>
+        <ul class="s_show">
+            <th><li class="s_show">姓名：</li></th>
+            <th><li class="s_show">学号：</li></th>
+            <th><li class="s_show">性别：</li></th>
+            <th><li class="s_show">电话号码：</li></th>
+            <th><li class="s_show">报名时间：</li></th>
+            <th><li class="s_show">电话号码：</li></th>
+            <th><li class="s_show">状态：</li></th>
+            <th><li class="s_show">备注：</li></th>
+        </ul>
+    </tr>
+    <tr>
+        <th><li class="s_show">{{s_info.s_name}}</li></th>
+        <th><li class="s_show">{{s_info.s_id}}</li></th>
+        <th><li class="s_show">{{s_info.s_gender}}</li></th>
+        <th><li class="s_show">{{s_info.s_birthday}}</li></th>
+        <th><li class="s_show">{{s_info.s_into}}</li></th>
+        <th><li class="s_show">{{s_info.s_phone}}</li></th>
+        <th><li class="s_show">{{s_info.s_status}}</li></th>
+        <th><li class="s_show">{{s_info.s_note}}</li></th>
+    </tr>
+</table>
+<br>
+<div class="pay_info">学生缴费记录
+    <br>    <br>
+<table border="1">
+    <tr>
+        <th><li class="s_show">金额：(元)</li></th>
+<!--        <th><li class="s_show">m_guid：</li></th>-->
+        <th><li class="s_show">缴费日期：</li></th>
+        <th><li class="s_show">购买常规课数量：</li></th>
+        <th><li class="s_show">购买特殊课数量：</li></th>
+        <th><li class="s_show">备注：</li></th>
+        <th><li class="s_show">优惠情况：</li></th>
+<!--        <th><li class="s_show">s_guid：</li></th>-->
+    </tr>
+    {% for item in s_money %}
+    <tr>
+        <td><li class="s_show">{{item.m_money}}</li></td>
+<!--        <td><li class="s_show">{{item.pk}}</li></td>-->
+        <td><li class="s_show">{{item.m_into_date}}</li></td>
+        <td><li class="s_show">{{item.m_regular_time}}</li></td>
+        <td><li class="s_show">{{item.m_special_time}}</li></td>
+        <td><li class="s_show">{{item.m_note}}</li></td>
+        <td><li class="s_show">{{item.m_discount_from}}</li></td>
+<!--        <td><li class="s_show">{{item.m_regular_time}}</li></td>-->
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+
+<br>
+<div class="class_info">学生上课记录{{test}}</div>
+<br>
+<table border="1">
+    <tr>
+        <th><li class="s_show">课程主题</li></th>
+        <th><li class="s_show">上课时间</li></th>
+        <th><li class="s_show">课程消耗数量</li></th>
+        <th><li class="s_show">上课班级ID</li></th>
+        <th><li class="s_show">上课老师ID</li></th>
+        <th><li class="s_show">备注</li></th>
+    </tr>
+    <tr>
+        <td><li class="s_show">{{classinfo.sc_section_theme}}</li></td>
+        <td><li class="s_show">{{classinfo.sc_date}}</li></td>
+        <td><li class="s_show">{{classinfo.sc_use_time}}</li></td>
+        <td><li class="s_show">{{classinfo.sc_bj_id_id}}</li></td>
+        <td><li class="s_show">{{classinfo.sc_teacher_name_id}}</li></td>
+        <td><li class="s_show">{{classdetail.cd_note}}</li></td>
+
+    </tr>
+</table>
+</body>
+</html>

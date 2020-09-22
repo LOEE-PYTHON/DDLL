@@ -127,7 +127,7 @@ class CourseInfo(models.Model):
 
 
 class StudentClassInfo(models.Model):
-    kc_id = models.ForeignKey(CourseInfo, default='', verbose_name='课程ID')
+    kc_id = models.ForeignKey(CourseInfo, default='', verbose_name='课程流水ID')
     sc_teacher_name = models.ForeignKey(TeacherInfo, verbose_name='教师姓名')
     sc_section_theme = models.CharField(u'课程小节主题', max_length=1000)
     sc_date = models.DateField(u'上课时间')
@@ -139,5 +139,16 @@ class StudentClassInfo(models.Model):
         verbose_name = u"学生上课表"
         verbose_name_plural = u"学生上课表"
 
+    def __str__(self):
+        return str(self.kc_id_id)
 
+
+class ClassDetailInfo(models.Model):
+    kcls_id = models.ForeignKey(StudentClassInfo, verbose_name='课程流水ID')
+    s_id = models.ForeignKey(StudentInfo, verbose_name='学生姓名')
+    cd_note = models.CharField(u'备注', max_length=1000)
+
+    class Meta:
+        verbose_name = u"学生上课详细表"
+        verbose_name_plural = u"学生上课详细表"
 # Create your models here.

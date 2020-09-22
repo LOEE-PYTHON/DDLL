@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-from students.models import StudentInfo
+from students.models import StudentInfo, MoneyInfo, StudentClassInfo, ClassDetailInfo
 
 
 def index(request):
@@ -57,19 +57,27 @@ def student_handle(request):
     return HttpResponse("新增成功！<a href= 'http://localhost:8002/students/student_show/'>查询</a>")
 
 
-def student_query(request):
-    uname = request.GET.get('query')
-    if uname == "":
-        return HttpResponse('您查找的名字不存在！')
-    pk = StudentInfo.stu_manager1.get(s_name=uname)
-    context = {'pk': pk}
-    return render(request, 'students/student_show.html', context)
+def student_view(request):
+    return render(request, 'students/student_view.html')
 
 
-def student_show(request):
-    return render(request, 'students/student_show.html')
+def student_view_handle(request):
+    s_id = request.GET.get('s_id')
+    id = request.GET.get('id')
+    if s_id == "":
+        return HttpResponse('您查找的内容不存在！')
+    s_info = StudentInfo.objects.get(s_id=s_id)
+    s_money = MoneyInfo.objects.filter(m_id_id=id)
+    s_class_detail = ClassDetailInfo.objects.get(s_id_id=id)
+    kc_id = s_class_detail.kcls_id_id
+    test = type(s_class_detail)
+    s_class = StudentClassInfo.objects.get(id = kc_id)
+
+    context = {'s_info': s_info, 's_money': s_money, 'classinfo': s_class, 'classdetail': s_class_detail}
+    # context = {'test': s_class, 's_info': s_info, 's_money': s_money, 'classinfo': s_class, 'classdetail': s_class_detail}
+    return render(request, 'students/student_view.html', context)
 
 
-def student(request):
-    return render(request, 'students/student.html')
+def student_alter(request):
+    return render(request, 'students/student_alter.html')
 
