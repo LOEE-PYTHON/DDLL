@@ -19,9 +19,9 @@ import students.urls,students.views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', include(admin.site.urls)),
+    # url(r'^$', include(admin.site.urls)),
     url(r'^students/', include(students.urls)),
-    # url(r'^$', students.views.index),
+    url(r'^$', students.views.index),
     url(r'^index$', students.views.index),
     url(r'^index.html$', students.views.index),
 ]

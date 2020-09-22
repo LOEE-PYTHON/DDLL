@@ -12,7 +12,7 @@ class StudentManager(models.Manager):
         stu.s_name = s_name
         stu.s_id = s_sid
         stu.s_gender = 0
-        stu.s_birthday = '2010-05-21 00:00:00.000000'
+        stu.s_birthday = '2010-05-21'
         stu.s_phone = '12322222222'
         stu.s_status = 1
         stu.s_into = '2024-3-2'
@@ -30,8 +30,8 @@ class StudentInfo(models.Model):
     s_into = models.DateField(u'报名日期', )
     s_note = models.TextField(u'备注', default="")
     isDelete = models.BooleanField(u'是否删除', default=False)
-    stu_manager1 = models.Manager()
-    stu_manager2 = StudentManager()
+    # stu_manager1 = models.Manager()
+    # stu_manager2 = StudentManager()
 
     def classinfo(self):
         return self.s_name
@@ -73,8 +73,8 @@ class MoneyInfo(models.Model):
     m_id = models.ForeignKey(StudentInfo, default='', verbose_name='学生学号')
     m_money = models.IntegerField(u'金额', default="")
     m_into_date = models.DateField(u'入账时间', default="1900-01-01")
-    m_regular_time = models.IntegerField(u'常规课剩余时间', default="")
-    m_special_time = models.IntegerField(u'特殊课剩余时间', default="")
+    m_regular_time = models.IntegerField(u'购买常规课数量', default="")
+    m_special_time = models.IntegerField(u'购买特殊课数量', default="")
     m_note = models.TextField(u'备注', max_length=1000, default="")
     m_discount_from = models.CharField(u'优惠情况', max_length=500)
     isDelete = models.BooleanField(u'是否删除', default=False)
@@ -85,7 +85,6 @@ class MoneyInfo(models.Model):
     class Meta:
         verbose_name = u"财务表"
         verbose_name_plural = u"财务表"
-
 
 
 class ClassInfo(models.Model):
@@ -105,10 +104,6 @@ class ClassInfo(models.Model):
 
     def __str__(self):
         return self.cl_name
-
-
-
-
 
 
 class CourseInfo(models.Model):

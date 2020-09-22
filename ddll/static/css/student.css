@@ -1,20 +1,89 @@
 
-.s_form{
-    margin: 10px 0px;
+body{
+    font-size: 20px;
 }
 
-.s_id{
-    margin: 20px 0px;
+.s_body{
+    background-color: #737272;
+    margin: 1% 5%;
+    padding: 0% 30%;
+    height: 600px;
 }
 
-.s_id span{
-    vert-align: top;
+.s_form span{
+    padding: 20px;
+    margin: 10px;
 }
 
-.s_info li{
+.caption{
+    background-color: #999999;
+    height: 40px;
+    text-align: center;
+    margin: 0% 5%;
+}
+
+.caption h2{
+    line-height: 40px;
+    color: #edfff9;
+}
+
+
+
+.s_botton{
+    text-align: center;
+}
+
+.list{
+    margin: 10px -90%;
+    /*background-color: #4e4e4e;*/
+    height: 580px;
+    width: 150px;
+    border-right: 3px solid;
+}
+
+.list li{
+    margin: 0px 0px 20px 0px;
+}
+
+.list li h1{
+    font-size: 14px;
+    color: #edfff9;
+    position: relative;
+    top: -39px;
+    left: 15px;
+}
+
+.list li h2{
+    font-size: 14px;
+    color: #edfff9;
+    position: relative;
+    top: -39px;
+    left: 30px;
+}
+
+
+.form_info{
+    margin: 0px 0px 2px 0px;
+    color: #edfff9;
+}
+
+.s_show{
     margin: 20px;
+    text-align: left;
+    color: #edfff9;
 }
 
-.s_info{
-    align-content: center;
+.p_ifr{
+    margin: 10px 0px;
+    position: relative;
+    left: -180px;
+}
+
+.student_list_page{
+    text-align: center;
+
+}
+.student_list_page span{
+    color: white;
+
 }
