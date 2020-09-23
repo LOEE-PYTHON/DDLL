@@ -25,12 +25,13 @@
 </form>
     <table class="student_list_page" border="1px" solid>
         <tr>
-            <th width=10%>序号</th>
-            <th width=20%>学号</th>
+            <th width=8%>序号</th>
+            <th width=15%>学号</th>
             <th width=10%>姓名</th>
-            <th width=20%>报名时间</th>
+            <th width=17%>报名时间</th>
             <th width=10%>状态</th>
             <th width=20%>出生日期</th>
+            <th width=10%>剩余课时</th>
             <th width=10%>操作</th>
         </tr>
         {% for info in student_info %}
@@ -43,6 +44,7 @@
             <td>{{info.s_into}}</td>
             <td>{{info.s_status}}</td>
             <td>{{info.s_birthday}}</td>
+            <td>{{info.s_id}}</td>
             <td><a href='/students/student_view_handle/?s_id={{info.s_id}}&id={{info.pk}}'>查看</a>  <a href="#">修改</a></td>
         </tr>
         </span>
