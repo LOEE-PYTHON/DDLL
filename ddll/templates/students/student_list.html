@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../../static/css/student.css">
 
 </head>
+{% load my_tags %}
 <body>
 
 
@@ -14,8 +15,8 @@
 <form action="/students/student_list_handle/" METHOD="get" name="s_form" id="s_form">
     <select name="query_method" id="query_method">
         <option value="0">--请选择--</option>
-        <option value="1">学号</option>
-        <option value="2">姓名</option>
+        <option value="1" >学号</option>
+        <option value="2" selected>姓名</option>
         <option value="3">报名日期</option>
     </select>
     <input type="text" name="query_info">
@@ -44,7 +45,7 @@
             <td>{{info.s_into}}</td>
             <td>{{info.s_status}}</td>
             <td>{{info.s_birthday}}</td>
-            <td>{{info.s_id}}</td>
+            <td>{{ over_num|get_item:info.s_id }}</td>
             <td><a href='/students/student_view_handle/?s_id={{info.s_id}}&id={{info.pk}}'>查看</a>  <a href="#">修改</a></td>
         </tr>
         </span>

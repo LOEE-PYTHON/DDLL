@@ -16,22 +16,61 @@ def student_into(request):
 
 def student_list(request):
     student_info = StudentInfo.objects.all()
-    context = {"student_info": student_info}
+    query_type = 0
+    num_dic = {}
+    for i in student_info:
+        s_id = i.id
+        over_course_num = MoneyInfo.objects.filter(m_id_id=s_id)
+        # over_course_num = MoneyInfo.objects.filter(m_id_id=s_id)
+        num = 0
+        for m_info in over_course_num:
+            num += m_info.m_regular_time
+            num_dic[i.s_id]=num
+    # context = {"student_info": student_info}
+    # return render(request, "students/student_list.html", context)
+
+    context = {"student_info": student_info, "over_num": num_dic, "query_type": query_type}
     return render(request, "students/student_list.html", context)
 
 
 def student_list_handle(request):
     q_method = request.GET.get("query_method")
     query_info = request.GET.get("query_info")
+    query_type = 1
+    num_dic = {}
     if q_method == "1":
-        student_info = StudentInfo.objects.filter(s_id=query_info)
+        student_info = StudentInfo.objects.filter(s_id__contains=query_info)
+        for i in student_info:
+            s_id = i.id
+            over_course_num = MoneyInfo.objects.filter(m_id_id=s_id)
+            num = 0
+            for m_info in over_course_num:
+                num += m_info.m_regular_time
+                num_dic[i.s_id] = num
+
     elif q_method == "2":
-        student_info = StudentInfo.objects.filter(s_name=query_info)
+        student_info = StudentInfo.objects.filter(s_name__contains=query_info)
+        for i in student_info:
+            s_id = i.id
+            over_course_num = MoneyInfo.objects.filter(m_id_id=s_id)
+            num = 0
+            for m_info in over_course_num:
+                num += m_info.m_regular_time
+                num_dic[i.s_id] = num
+
     elif q_method == "3":
-        student_info = StudentInfo.objects.filter(s_into=query_info)
+        student_info = StudentInfo.objects.filter(s_into__contains=query_info)
+        for i in student_info:
+            s_id = i.id
+            over_course_num = MoneyInfo.objects.filter(m_id_id=s_id)
+            num = 0
+            for m_info in over_course_num:
+                num += m_info.m_regular_time
+                num_dic[i.s_id] = num
     else:
         return HttpResponse("没有找到！")
-    context = {"student_info": student_info}
+
+    context = {"student_info": student_info, "over_num": num_dic, "query_type": query_type}
     return render(request, "students/student_list.html", context)
 
 

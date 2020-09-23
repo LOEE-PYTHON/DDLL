@@ -10,6 +10,7 @@ class TeacherAdmin(admin.ModelAdmin):
     actions_on_top = True
     actions_on_bottom = True
 
+
 class StudentAdmin(admin.ModelAdmin):
     list_display = ['s_name', 's_id', 's_birthday', 's_into']
     search_fields = ['s_name', 's_id', 's_birthday', 's_into']
@@ -39,17 +40,17 @@ class ClassAdmin(admin.ModelAdmin):
 
 
 class StudentClassAdmin(admin.ModelAdmin):
-    list_display = ['kc_id', 'sc_section_theme', 'sc_date']
-    search_fields = ['kc_id', 'sc_section_theme', 'sc_date']
+    list_display = ['sc_id', 'sc_section_theme', 'sc_date']
+    search_fields = ['sc_id', 'sc_section_theme', 'sc_date']
     list_per_page = 10
-    list_filter = ['kc_id']
+    list_filter = ['sc_id']
 
 
 class ClassDetailInfoAdmin(admin.ModelAdmin):
-    list_display = ['kcls_id_id', 's_id_id', 'cd_note']
-    search_fields = ['kcls_id_id', 's_id_id', 'cd_note']
+    list_display = ['c_id', 's_id_id', 'cd_note']
+    search_fields = ['c_id', 's_id_id', 'cd_note']
     list_per_page = 10
-    list_filter = ['kcls_id_id']
+    list_filter = ['c_id']
 
 
 admin.site.register(StudentInfo, StudentAdmin)
