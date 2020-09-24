@@ -20,16 +20,20 @@ def student_list(request):
     num_dic = {}
     for i in student_info:
         s_id = i.id
+        # sid = int(float(sid))
         over_course_num = MoneyInfo.objects.filter(m_id_id=s_id)
         # over_course_num = MoneyInfo.objects.filter(m_id_id=s_id)
+        use_course_num = ClassDetailInfo.objects.filter(s_id_id=s_id).count()
         num = 0
         for m_info in over_course_num:
             num += m_info.m_regular_time
-            num_dic[i.s_id]=num
+            num1 = num - use_course_num
+            num_dic[i.s_id] = num1
+
     # context = {"student_info": student_info}
     # return render(request, "students/student_list.html", context)
 
-    context = {"student_info": student_info, "over_num": num_dic, "query_type": query_type}
+    context = {"student_info": student_info, "over_num": num_dic, "query_type": query_type, 'test': use_course_num}
     return render(request, "students/student_list.html", context)
 
 
