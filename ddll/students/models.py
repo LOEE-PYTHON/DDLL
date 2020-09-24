@@ -3,20 +3,26 @@ from django.db import models
 from django.db import models
 
 
-class StudentManager(models.Manager):
-    def get_queryset(self):
-        return super(StudentManager, self).get_queryset().filter(isDelete=1)
 
-    def create(self, s_name, s_sid):
+class StudentManager(models.Manager):
+
+    def get_queryset(self):
+        return super(StudentManager, self).get_queryset().filter(isDelete=False)
+
+    def create(self, s_name, s_gender, s_phone, s_birthday, s_into, s_note):
         stu = StudentInfo()
         stu.s_name = s_name
-        stu.s_id = s_sid
-        stu.s_gender = 0
-        stu.s_birthday = '2010-05-21'
-        stu.s_phone = '12322222222'
+        num = 300
+        num += 1
+        stu.s_id = "DDLL" + str(num)
+        stu.s_gender = s_gender
+        stu.s_birthday = s_birthday
+        stu.s_phone = s_phone
         stu.s_status = 1
-        stu.s_into = '2024-3-2'
+        stu.s_into = s_into
+        stu.s_note = s_note
         stu.isDelete = False
+        stu.save()
         return stu
 
 
@@ -24,14 +30,14 @@ class StudentInfo(models.Model):
     s_name = models.CharField(u'姓名', max_length=6, default='')
     s_id = models.CharField(u'学号', max_length=10)
     s_gender = models.BooleanField(u'性别', default=False)
-    s_birthday = models.DateField(u'出生日期', )
+    s_birthday = models.DateField(u'出生日期')
     s_phone = models.CharField(u'手机号码', max_length=20, default='')
     s_status = models.BooleanField(u'在读状态', default=True)
-    s_into = models.DateField(u'报名日期', )
+    s_into = models.DateField(u'报名日期')
     s_note = models.TextField(u'备注', default="", null=True)
     isDelete = models.BooleanField(u'是否删除', default=False)
     # stu_manager1 = models.Manager()
-    # stu_manager2 = StudentManager()
+    objects = StudentManager()
 
     def classinfo(self):
         return self.s_name
@@ -52,6 +58,11 @@ class StudentInfo(models.Model):
     gender.short_description = '性别'
 
 
+class TeacherInfoManager(models.Manager):
+    def get_queryset(self):
+        return super(TeacherInfoManager, self).get_queryset().filter(isDelete=False)
+
+
 class TeacherInfo(models.Model):
     t_name = models.CharField(u'姓名', max_length=10, default=None)
     t_age = models.IntegerField(u'年龄', )
@@ -67,6 +78,11 @@ class TeacherInfo(models.Model):
 
     def __str__(self):
         return self.t_name
+
+
+class MoneyInfoManager(models.Manager):
+    def get_queryset(self):
+        return super(MoneyInfoManager, self).get_queryset().filter(isDelete=False)
 
 
 class MoneyInfo(models.Model):
@@ -85,6 +101,11 @@ class MoneyInfo(models.Model):
     class Meta:
         verbose_name = u"财务表"
         verbose_name_plural = u"财务表"
+
+
+class ClassInfoManager(models.Manager):
+    def get_queryset(self):
+        return super(ClassInfoManager, self).get_queryset().filter(isDelete=False)
 
 
 class ClassInfo(models.Model):
@@ -106,12 +127,25 @@ class ClassInfo(models.Model):
         return self.cl_name
 
 
+class CourseTypeInfoManager(models.Manager):
+    def get_queryset(self):
+        return super(CourseTypeInfoManager, self).get_queryset().filter(isDelete=False)
+
+
 class CourseTypeInfo(models.Model):
     ct_course_id = models.CharField(u'课程ID', max_length=20, default='')
     ct_course_name = models.CharField(u'课程名称', max_length=50, default='')
     ct_study_age = models.CharField(u'推荐学习年龄', max_length=20, default="")
     ct_equipment = models.CharField(u'器材', max_length=50, default='')
     ct_note = models.CharField(u'备注', max_length=2000, default='')
+
+    class Meta:
+        verbose_name = u"课程总表"
+        verbose_name_plural = u"课程总表"
+
+class CourseInfoManager(models.Manager):
+    def get_queryset(self):
+        return super(CourseInfoManager, self).get_queryset().filter(isDelete=False)
 
 
 class CourseInfo(models.Model):
@@ -134,6 +168,10 @@ class CourseInfo(models.Model):
     def __str__(self):
         return self.c_course_id
 
+class StudentClassInfoManager(models.Manager):
+    def get_queryset(self):
+        return super(StudentClassInfoManager, self).get_queryset().filter(isDelete=False)
+
 
 class StudentClassInfo(models.Model):
     sc_id = models.ForeignKey(CourseInfo, default='', verbose_name='课程ID')
@@ -151,6 +189,11 @@ class StudentClassInfo(models.Model):
 
     def __str__(self):
         return str(self.sc_id)
+
+
+class ClassDetailInfoManager(models.Manager):
+    def get_queryset(self):
+        return super(ClassDetailInfoManager, self).get_queryset().filter(isDelete=False)
 
 
 class ClassDetailInfo(models.Model):

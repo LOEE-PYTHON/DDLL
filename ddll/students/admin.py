@@ -60,6 +60,7 @@ admin.site.register(MoneyInfo, MoneyAdmin)
 admin.site.register(ClassInfo, ClassAdmin)
 admin.site.register(StudentClassInfo,StudentClassAdmin)
 admin.site.register(ClassDetailInfo, ClassDetailInfoAdmin)
+admin.site.register(CourseTypeInfo)
 
 
 

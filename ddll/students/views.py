@@ -33,7 +33,7 @@ def student_list(request):
     # context = {"student_info": student_info}
     # return render(request, "students/student_list.html", context)
 
-    context = {"student_info": student_info, "over_num": num_dic, "query_type": query_type, 'test': use_course_num}
+    context = {"student_info": student_info, "over_num": num_dic, "query_type": query_type}
     return render(request, "students/student_list.html", context)
 
 
@@ -130,6 +130,28 @@ def student_view_handle(request):
     return render(request, 'students/student_view.html', context)
 
 
+def student_add(request):
+    return render(request,"students/student_add.html")
+
+
 def student_alter(request):
     return render(request, 'students/student_alter.html')
 
+
+def student_add_handle(request):
+    s_name = request.GET.get('s_name')
+    s_gender = request.GET.get('s_gender')
+    s_phone = request.GET.get('s_phone')
+    s_birthday = request.GET.get('s_birthday')
+    s_into = request.GET.get('s_into')
+    s_note = request.GET.get('s_note')
+    m_money = request.GET.get('m_money')
+    m_pay_date = request.GET.get('m_pay_date')
+    m_usually = request.GET.get('m_usually')
+    m_special = request.GET.get('m_special')
+    m_discount = request.GET.get('m_discount')
+    m_note = request.GET.get('m_note')
+    student = StudentInfo()
+    StudentInfo.objects.create(s_name, s_gender, s_phone, s_birthday, s_into, s_note)
+    context = {'s_name':s_name,"s_gender":s_gender,"s_phone":s_phone,"s_birthday":s_birthday,"s_into":s_into,"s_note":s_note}
+    return render(request,'students/student_add.html', context)

@@ -14,4 +14,6 @@ urlpatterns = [
     url(r'^student_alter/$', students.views.student_alter),
     url(r'^student_list/$', students.views.student_list),
     url(r'^student_list_handle/$', students.views.student_list_handle),
+    url(r"^student_add/$", students.views.student_add),
+    url(r"^student_add_handle/$", students.views.student_add_handle),
 ]

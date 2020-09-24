@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加学生信息表</title>
+    <link rel="stylesheet" href="../../static/css/reset.css">
+    <link rel="stylesheet" href="../../static/css/student.css">
+</head>
+<body>
+<!--<form action="/students/student_view_handle/" method="get">-->
+<!--    <input type="text" name="s_id" id="s_id" >-->
+<!--    <input type="submit" value="搜索">-->
+<!--&lt;!&ndash;    <a href="/students/student_into/"><input type="button" value="新增"></a>&ndash;&gt;-->
+<!--</form>-->
+<br>
+<div class="person_info">学生基本信息录入</div>
+<br>
+<form action="/students/student_add_handle/" method="get" name="s_info" id="s_info" >
+<!--    {%csrf_token%}-->
+    <ul >
+        <div class="sa_student_info">
+    <div class="sa_student_info_left fl">
+        <li>姓名：<input type="text" name="s_name"></li>
+        <li>性别：<input type="radio" name="s_gender" checked="checked" value="1">男 <input type="radio" name="s_gender" value="0">女</li>
+        <li>手机号码：<input type="text" name="s_phone"></li>
+
+    </div>
+    <div class='sa_student_info_right'>
+        <li>出生日期：<input type="date" name="s_birthday"></li>
+        <li>报名时间：<input type="date" name="s_into"></li>
+        <li>备注：<input type="text" name="s_note"></li>
+    </div>
+        </div>
+    </ul>
+    <br>
+    <div class="person_info">学生缴纳信息录入</div>
+<!--    <br>-->
+<!--    <div>-->
+<!--        <ul>-->
+<!--            <li>金额（元）：<input type="text" name="m_money"></li>-->
+<!--            <li>缴费日期：<input type="date" name="m_pay_date"></li>-->
+<!--            <li>购买常规课数量：<input type="text" name="m_usually"></li>-->
+<!--            <li>购买特殊课数量：<input type="text" name="m_special"></li>-->
+<!--            <li>优惠情况：<input type="text" name="m_discount"></li>-->
+<!--            <li>备注：<input type="text" name="m_note"></li>-->
+<!--        </ul>-->
+
+<!--    </div>-->
+    <input type="submit" value="提交">
+    <input type="reset" value="重置">
+</form>
+{{s_name}}
+{{s_birthday}}
+</body>
+</html>

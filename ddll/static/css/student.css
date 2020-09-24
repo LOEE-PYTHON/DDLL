@@ -91,3 +91,27 @@ body{
     color: white;
 
 }
+
+
+sa_student_info_left li{
+    height: 200px;
+    width: 300px;
+    border: solid 1px;
+    background-color: #00bc6f;
+}
+
+sa_student_info_right li{
+    margin-left: 100px;
+    height: 200px;
+    width: 300px;
+    border: solid 1px;
+    background-color: #00bc6f;
+}
+
+body sa_student_info{
+    margin-left: 100px;
+    height: 200px;
+
+    border: solid 1px;
+    background-color: #00bc6f;
+}
