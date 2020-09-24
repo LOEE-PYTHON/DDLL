@@ -150,7 +150,7 @@ class StudentClassInfo(models.Model):
         verbose_name_plural = u"学生上课表"
 
     def __str__(self):
-        return str(self.kc_id_id)
+        return str(self.sc_id)
 
 
 class ClassDetailInfo(models.Model):

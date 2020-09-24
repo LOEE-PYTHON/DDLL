@@ -103,25 +103,24 @@ def student_view(request):
 def student_view_handle(request):
     s_id = request.GET.get('s_id')
     id = request.GET.get('id')
-    if s_id == "":
-        return HttpResponse('您查找的内容不存在！')
+    # if s_id == "":
+    #     return HttpResponse('您查找的内容不存在！')
     # 查找学生信息表中对应学生的信息
-    s_info = StudentInfo.objects.get(s_id=s_id)
+    s_info = StudentInfo.objects.get(id=id)
     # 查找财务表中对应学生的所有信息
     s_money = MoneyInfo.objects.filter(m_id_id=id)
 
     s_class_detail = ClassDetailInfo.objects.filter(s_id_id=id)
-    # test = []
+
     cl_info = []
     sk_info = []
     for s in s_class_detail:
-        kc_id = s.kcls_id_id
+        kc_id = s.c_id_id
         s_class = StudentClassInfo.objects.filter(id=kc_id)
         sk_info.append(s_class)
         cl_info.append(s)
         # test.append(kc_id)
 
-    test1 = type(sk_info)
     context = {'s_info': s_info, 's_money': s_money, 'classinfo': sk_info, 'classdetail': cl_info}
     # context = {'test': test, 'test1': test1, 's_info': s_info, 's_money': s_money, 'classinfo': sk_info, 'classdetail': cl_info}
     return render(request, 'students/student_view.html', context)
