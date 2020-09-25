@@ -15,8 +15,9 @@
 <br>
 <div class="person_info">学生基本信息录入</div>
 <br>
-<form action="/students/student_add_handle/" method="get" name="s_info" id="s_info" >
-<!--    {%csrf_token%}-->
+{{test}}
+<form action="/students/student_add_handle/" method="POST" name="s_info" id="s_info" >
+    {%csrf_token%}
     <ul >
         <div class="sa_student_info">
     <div class="sa_student_info_left fl">
@@ -34,22 +35,22 @@
     </ul>
     <br>
     <div class="person_info">学生缴纳信息录入</div>
-<!--    <br>-->
-<!--    <div>-->
-<!--        <ul>-->
-<!--            <li>金额（元）：<input type="text" name="m_money"></li>-->
-<!--            <li>缴费日期：<input type="date" name="m_pay_date"></li>-->
-<!--            <li>购买常规课数量：<input type="text" name="m_usually"></li>-->
-<!--            <li>购买特殊课数量：<input type="text" name="m_special"></li>-->
-<!--            <li>优惠情况：<input type="text" name="m_discount"></li>-->
-<!--            <li>备注：<input type="text" name="m_note"></li>-->
-<!--        </ul>-->
+    <br>
+    <div>
+        <ul>
+            <li>金额（元）：<input type="text" name="m_money"></li>
+            <li>缴费日期：<input type="date" name="m_pay_date"></li>
+            <li>购买常规课数量：<input type="text" name="m_usually"></li>
+            <li>购买特殊课数量：<input type="text" name="m_special"></li>
+            <li>优惠情况：<input type="text" name="m_discount"></li>
+            <li>备注：<input type="text" name="m_note"></li>
+        </ul>
 
-<!--    </div>-->
+    </div>
     <input type="submit" value="提交">
     <input type="reset" value="重置">
 </form>
-{{s_name}}
-{{s_birthday}}
+<!--{{s_name}}-->
+<!--{{s_birthday}}-->
 </body>
 </html>

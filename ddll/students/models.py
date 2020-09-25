@@ -3,7 +3,6 @@ from django.db import models
 from django.db import models
 
 
-
 class StudentManager(models.Manager):
 
     def get_queryset(self):
@@ -47,7 +46,7 @@ class StudentInfo(models.Model):
         verbose_name_plural = u"学生表"
 
     def __str__(self):
-        return self.s_name
+        return self.s_id
 
     def gender(self):
         if self.s_gender:
@@ -56,6 +55,44 @@ class StudentInfo(models.Model):
             return '女'
 
     gender.short_description = '性别'
+
+
+class MoneyInfoManager(models.Manager):
+    def get_queryset(self):
+        return super(MoneyInfoManager, self).get_queryset().filter(isDelete=False)
+
+    def create(self, s_id, m_money, m_pay_date, m_usually, m_special, m_discount, m_note ):
+        moneyinfo = MoneyInfo()
+        moneyinfo.m_id_id = s_id
+        moneyinfo.m_money = m_money
+        moneyinfo.m_into_date = m_pay_date
+        moneyinfo.m_regular_time = m_usually
+        moneyinfo.m_special_time = m_special
+        moneyinfo.m_note = m_note
+        moneyinfo.m_discount_from = m_discount
+        moneyinfo.isDelete = False
+        moneyinfo.save()
+        return moneyinfo
+
+
+class MoneyInfo(models.Model):
+    m_id = models.ForeignKey(StudentInfo, default='', verbose_name='学生学号')
+    m_money = models.IntegerField(u'金额', default="")
+    m_into_date = models.DateField(u'入账时间', default="1900-01-01")
+    m_regular_time = models.IntegerField(u'购买常规课数量', default="")
+    m_special_time = models.IntegerField(u'购买特殊课数量', default="", null=True)
+    m_note = models.TextField(u'备注', max_length=1000, default="", null=True)
+    m_discount_from = models.CharField(u'优惠情况', max_length=500, null=True)
+    isDelete = models.BooleanField(u'是否删除', default=False)
+
+    objects = MoneyInfoManager()
+
+    # def __str__(self):
+    #     return self.m_id
+
+    class Meta:
+        verbose_name = u"财务表"
+        verbose_name_plural = u"财务表"
 
 
 class TeacherInfoManager(models.Manager):
@@ -78,29 +115,6 @@ class TeacherInfo(models.Model):
 
     def __str__(self):
         return self.t_name
-
-
-class MoneyInfoManager(models.Manager):
-    def get_queryset(self):
-        return super(MoneyInfoManager, self).get_queryset().filter(isDelete=False)
-
-
-class MoneyInfo(models.Model):
-    m_id = models.ForeignKey(StudentInfo, default='', verbose_name='学生学号')
-    m_money = models.IntegerField(u'金额', default="")
-    m_into_date = models.DateField(u'入账时间', default="1900-01-01")
-    m_regular_time = models.IntegerField(u'购买常规课数量', default="")
-    m_special_time = models.IntegerField(u'购买特殊课数量', default="", null=True)
-    m_note = models.TextField(u'备注', max_length=1000, default="", null=True)
-    m_discount_from = models.CharField(u'优惠情况', max_length=500, null=True)
-    isDelete = models.BooleanField(u'是否删除', default=False)
-
-    # def __str__(self):
-    #     return self.m_id
-
-    class Meta:
-        verbose_name = u"财务表"
-        verbose_name_plural = u"财务表"
 
 
 class ClassInfoManager(models.Manager):
