@@ -1,6 +1,10 @@
 from django.db import models
+from django.db.models import Max
+from django.contrib.auth.models import AbstractUser, UserManager as _UserManager
 
 from django.db import models
+import re
+
 
 
 class StudentManager(models.Manager):
@@ -11,9 +15,12 @@ class StudentManager(models.Manager):
     def create(self, s_name, s_gender, s_phone, s_birthday, s_into, s_note):
         stu = StudentInfo()
         stu.s_name = s_name
-        num = 300
+        s_info = StudentInfo.objects.latest('id')
+        last_sid = s_info.s_id
+        num = int(re.sub(r"\D", "", last_sid))
         num += 1
-        stu.s_id = "DDLL" + str(num)
+        num = str(num)
+        stu.s_id = "DDLL" + num.zfill(4)
         stu.s_gender = s_gender
         stu.s_birthday = s_birthday
         stu.s_phone = s_phone
@@ -22,6 +29,7 @@ class StudentManager(models.Manager):
         stu.s_note = s_note
         stu.isDelete = False
         stu.save()
+        print('保存成功！')
         return stu
 
 
@@ -181,6 +189,7 @@ class CourseInfo(models.Model):
 
     def __str__(self):
         return self.c_course_id
+
 
 class StudentClassInfoManager(models.Manager):
     def get_queryset(self):

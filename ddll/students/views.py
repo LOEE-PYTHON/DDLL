@@ -145,15 +145,17 @@ def student_add_handle(request):
     s_birthday = request.POST.get('s_birthday')
     s_into = request.POST.get('s_into')
     s_note = request.POST.get('s_note')
+    student = StudentInfo()
+    student1 = StudentInfo.objects.create(s_name, s_gender, s_phone, s_birthday, s_into, s_note)
+
     m_money = request.POST.get('m_money')
     m_pay_date = request.POST.get('m_pay_date')
     m_usually = request.POST.get('m_usually')
     m_special = request.POST.get('m_special')
     m_discount = request.POST.get('m_discount')
     m_note = request.POST.get('m_note')
-    student = StudentInfo()
-    student1 = StudentInfo.objects.create(s_name, s_gender, s_phone, s_birthday, s_into, s_note)
-    s_info = StudentInfo.objects.get(s_id = student1)
-    MoneyInfo.objects.create(s_info.id, m_money, m_pay_date, m_usually, m_special, m_discount, m_note)
+    if m_money != "" and m_pay_date != "" and m_usually != "":
+        s_info = StudentInfo.objects.get(s_id=student1)
+        MoneyInfo.objects.create(s_info.id, m_money, m_pay_date, m_usually, m_special, m_discount, m_note)
     context = {'s_name':s_name,"s_gender":s_gender,"s_phone":s_phone,"s_birthday":s_birthday,"s_into":s_into,"s_note":s_note}
     return render(request,'students/student_add.html', context)
