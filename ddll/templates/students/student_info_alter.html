@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>学生信息查询</title>
+    <title>学生信息基本信息修改</title>
     <link rel="stylesheet" href="../../static/css/reset.css">
     <link rel="stylesheet" href="../../static/css/student.css">
 </head>
@@ -13,7 +13,37 @@
 <!--&lt;!&ndash;    <a href="/students/student_into/"><input type="button" value="新增"></a>&ndash;&gt;-->
 <!--</form>-->
 <br>
-<div class="person_info">学生基本信息</div>
+<ul>
+    <form action="/students/student_info_alter/" method="post">
+        {% csrf_token%}
+    <div class="person_info">学生基本信息修改<input class="fr" type="submit" value=" 修改 "></div>
+        <li>姓名：<input type="text" name="s_name" value={{s_name}}></li>
+        <li>学号：<input type="text" name="s_id" value="{{s_id}}" readonly="readonly"></li>
+        {% if s_gender == "男" %}
+        性别：<li>
+            男 <input type="radio" name="s_gender" checked = checked value="1">
+            女 <input type="radio" name="s_gender" value="0"></li>
+        {%else%}
+            男 <input type="radio" name="s_gender" value="1">
+            女 <input type="radio" name="s_gender" checked = checked value="0"></li>
+        {%endif%}
+        <li>出生日期：<input type="date" name="s_birthday" value={{s_birthday|date:'Y-m-d'}}></li>
+        <li>联系方式：<input type="text" name="s_phone" value={{s_phone}}></li>
+        <li>状态：<input type="text" name="s_status" value={{s_status}}></li>
+        <li>报名日期：<input type="date" name="s_into" value={{s_into|date:'Y-m-d'}}></li>
+        <li>备注：<input type="text" name="s_note" value={{s_note}}></li>
+
+<div class="person_info">收入信息修改</div>
+
+        <li>金额（元）<input type="text" name="m_money" value=""></li>
+        <li>报名日期：<input type="date name="m_into_date"></li>
+        <li>购买常规课数量：<input type="text" name="m_regular_time"></li>
+        <li>购买寒暑假课数量：<input type="text" name="m_special_time"></li>
+        <li>优惠情况：<input type="text" name="m_discount_from"></>
+        <li>备注:<input type="text" name="m_note"></li>
+
+    </form>
+</ul>
 <table border="1">
     <tr>
         <ul class="s_show">

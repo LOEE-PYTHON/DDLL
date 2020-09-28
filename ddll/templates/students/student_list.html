@@ -20,9 +20,9 @@
         <option value="3">报名日期</option>
     </select>
     <input type="text" name="query_info">
-    <input type="submit" value="搜索">
-    <a href="/students/student_list/"><input type="button" value="显示全部"></a>
-    <a href="/students/student_add/"><input type="button" value="添加" class="fr"></a>
+    <input type="submit" value=" 搜索 ">
+    <a href="/students/student_list/"><input type="button" value=" 显示全部 "></a>
+    <a href="/students/student_add/"><input type="button" value=" 添加 " class=""></a>
     <br><br>
 </form>
     <table class="student_list_page" border="1px" solid>
@@ -47,7 +47,9 @@
             <td>{{info.s_status}}</td>
             <td>{{info.s_birthday}}</td>
             <td>{{ over_num|get_item:info.s_id }}</td>
-            <td><a href='/students/student_view_handle/?s_id={{info.s_id}}&id={{info.pk}}'>查看</a>  <a href="#">修改</a></td>
+            <td><a href='/students/student_view_handle/?s_id={{info.s_id}}&id={{info.pk}}'>查看</a>
+                <a href="/students/student_info_alter/?s_id={{info.s_id}}&id={{info.pk}}">修改</a>
+            </td>
         </tr>
         </span>
         {% endfor %}
