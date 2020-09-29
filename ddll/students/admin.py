@@ -69,7 +69,8 @@ admin.site.register(StudentClassInfo,StudentClassAdmin)
 admin.site.register(ClassDetailInfo, ClassDetailInfoAdmin)
 admin.site.register(CourseTypeInfo)
 admin.site.register(UserInfo, ClassUserInfoAdmin)
-
+admin.site.site_title = "搭搭乐乐管理系统"
+admin.site.site_header = "搭搭乐乐管理系统"
 
 
 

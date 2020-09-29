@@ -12,7 +12,7 @@ class UserInfo(models.Model):
     u_pwd = models.CharField(u"密码", max_length=10)
     u_nickname = models.CharField(u'昵称', max_length=10)
     # 用户类型：1表示管理员，2表示普通老师：3表示财务人员
-    u_type = models.IntegerField(u'用户类型', max_length=1)
+    u_type = models.IntegerField(u'用户类型', default='1')
 
 
     class Meta:
@@ -100,7 +100,7 @@ class MoneyInfoManager(models.Manager):
 
 
 class MoneyInfo(models.Model):
-    m_id = models.ForeignKey(StudentInfo, default='', verbose_name='学生学号')
+    m_id = models.ForeignKey(StudentInfo, default='', verbose_name='学生学号',on_delete=models.CASCADE)
     m_money = models.IntegerField(u'金额', default="")
     m_into_date = models.DateField(u'入账时间', default="1900-01-01")
     m_regular_time = models.IntegerField(u'购买常规课数量', default="")
@@ -149,7 +149,7 @@ class ClassInfoManager(models.Manager):
 class ClassInfo(models.Model):
     cl_id = models.CharField(u'班级ID', max_length=20)
     cl_name = models.CharField(u'班级名称', max_length=50)
-    cl_teacher = models.ForeignKey(TeacherInfo, default='', verbose_name='教师姓名')
+    cl_teacher = models.ForeignKey(TeacherInfo, default='', verbose_name='教师姓名',on_delete=models.CASCADE)
     cl_class_place = models.CharField(u'上课地点', max_length=100)
     cl_class_data = models.CharField(u'上课日期', max_length=20)
     cl_class_start_time = models.CharField(u'上课开始时间', max_length=20)
@@ -181,6 +181,9 @@ class CourseTypeInfo(models.Model):
     class Meta:
         verbose_name = u"课程总表"
         verbose_name_plural = u"课程总表"
+
+    def __str__(self):
+        return self.ct_course_name
 
 
 class CourseInfoManager(models.Manager):
@@ -216,14 +219,14 @@ class StudentClassInfoManager(models.Manager):
 
 
 class StudentClassInfo(models.Model):
-    sc_id = models.ForeignKey(CourseInfo, default='', verbose_name='课程ID')
-    sc_teacher_name = models.ForeignKey(TeacherInfo, verbose_name='任课老师')
+    sc_id = models.ForeignKey(CourseInfo, default='', verbose_name='课程ID',on_delete=models.CASCADE)
+    sc_teacher_name = models.ForeignKey(TeacherInfo, verbose_name='任课老师',on_delete=models.CASCADE)
     sc_section_theme = models.CharField(u'课程小节主题', max_length=1000)
     # sc_section_theme = models.ForeignKey(ClassInfo, verbose_name="课程小节主题")
     sc_date = models.DateField(u'上课时间')
     sc_use_time = models.IntegerField(u'消耗课时', )
     sc_place = models.CharField(u'上课地点', max_length=50)
-    sc_bj_id = models.ForeignKey(ClassInfo, default='', verbose_name='上课班级ID', null=True)
+    sc_bj_id = models.ForeignKey(ClassInfo, default='', verbose_name='上课班级ID', null=True,on_delete=models.CASCADE)
     sc_note = models.CharField(u"备注",max_length=500, null=True)
     isDelete = models.BooleanField(u'是否删除', default=False)
 
@@ -241,8 +244,8 @@ class ClassDetailInfoManager(models.Manager):
 
 
 class ClassDetailInfo(models.Model):
-    c_id = models.ForeignKey(StudentClassInfo, verbose_name='课程流水ID')
-    s_id = models.ForeignKey(StudentInfo, verbose_name='上课学生')
+    c_id = models.ForeignKey(StudentClassInfo, verbose_name='课程流水ID',on_delete=models.CASCADE)
+    s_id = models.ForeignKey(StudentInfo, verbose_name='上课学生',on_delete=models.CASCADE)
     cd_note = models.CharField(u'备注', max_length=1000, null=True)
 
     class Meta:

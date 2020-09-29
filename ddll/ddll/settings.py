@@ -12,9 +12,11 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -25,12 +27,13 @@ SECRET_KEY = '5lr5cs#0cbp!vh=t3tby%%sgbv7^7^mr%g6w&j5x(shdbm-hr!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
-
+# ALLOWED_HOSTS = ['*',]
+ALLOWED_HOSTS = []
 
 # Application definition
 
 INSTALLED_APPS = (
+    'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,20 +42,40 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'students',
     'templatetags',
+
 )
 
-MIDDLEWARE_CLASSES = (
+# MIDDLEWARE_CLASSES = (
+#     'django.contrib.sessions.middleware.SessionMiddleware',
+#     'django.middleware.common.CommonMiddleware',
+#     'django.middleware.csrf.CsrfViewMiddleware',
+#     'django.contrib.auth.middleware.AuthenticationMiddleware',
+#     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+#     'django.contrib.messages.middleware.MessageMiddleware',
+#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+#     'django.middleware.security.SecurityMiddleware',
+# )
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-)
+]
+
+
+
 
 ROOT_URLCONF = 'ddll.urls'
+
+# TEMPLATE_DIRS = (
+#
+#     os.path.join(BASE_DIR, 'templates')
+#     )
+
 
 TEMPLATES = [
     {
@@ -108,7 +131,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
 
+# STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, '/static/'),
+]
+#
+# LOGIN_REDIRECT_URL = '/'
+#
+#
+# SESSION_SAVE_EVERY_REQUEST = True
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True

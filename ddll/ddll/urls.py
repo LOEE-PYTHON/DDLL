@@ -16,12 +16,16 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 import students.urls,students.views
+# import xadmin
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     # url(r'^$', include(admin.site.urls)),
     url(r'^students/', include(students.urls)),
     url(r'^$', students.views.index),
     url(r'^index$', students.views.index),
     url(r'^index.html$', students.views.index),
+    # url(r'^xadmin/$', xadmin.site.urls),
+
+
 ]
