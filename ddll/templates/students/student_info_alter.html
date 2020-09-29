@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生信息基本信息修改</title>
+    <link rel="stylesheet" href="../../static/css/reset.css">
+    <link rel="stylesheet" href="../../static/css/student.css">
+</head>
+<body>
+<!--<form action="/students/student_view_handle/" method="get">-->
+<!--    <input type="text" name="s_id" id="s_id" >-->
+<!--    <input type="submit" value="搜索">-->
+<!--&lt;!&ndash;    <a href="/students/student_into/"><input type="button" value="新增"></a>&ndash;&gt;-->
+<!--</form>-->
+<br>
+<ul>
+    <form action="/students/student_info_alter/" method="post">
+        {% csrf_token%}
+    <div class="person_info">学生基本信息修改<input class="fr" type="submit" value=" 修改 "></div>
+        <table border="1">
+            <tr>
+                <td width="50%">
+                    <li>姓名：<input type="text" name="s_name" value={{s_name}}></li>
+                    <li>学号：<input type="text" name="s_id" value="{{s_id}}" readonly="readonly"></li>
+                    {% if s_gender == "男" %}
+                    <li>性别：
+                        男 <input type="radio" name="s_gender" checked = checked value="True">
+                        女 <input type="radio" name="s_gender" value="False"></li>
+                    {%else%}
+                        男 <input type="radio" name="s_gender" value="True">
+                        女 <input type="radio" name="s_gender" checked = checked value="False"></li>
+                    {%endif%}
+                    <li>状态：
+                    {% if s_status %}
+                    <input type="radio" name="s_status" value="True" checked="checked">在读
+                    <input type="radio" name="s_status" value="False">停课
+                    {%else%}
+                    <input type="radio" name="s_status" value="True" >在读
+                    <input type="radio" name="s_status" value="False" checked="checked">停课
+                    {%endif%}
+                    </li>
+
+                </td>
+                <td width="50%>
+                    <li>出生日期：<input type="date" name="s_birthday" value={{s_birthday|date:'Y-m-d'}}></li>
+                    <li>联系方式：<input type="text" name="s_phone" value={{s_phone}}></li>
+                    <li>报名日期：<input type="date" name="s_into" value={{s_into|date:'Y-m-d'}}></li>
+                    <li>备注：<input type="text" name="s_note" value={{s_note}}></li>
+                </td>
+            </tr>
+        </table>
+
+
+
+<div class="person_info">收入信息修改</div>
+        <table border="1">
+            <tr>
+                <th width="20%">序号</th>
+                <th width="40%">金额（元）</th>
+                <th width="10%">报名日期</th>
+                <th width="10%">购买常规课数量</th>
+                <th width="10%">购买寒暑假课数量</th>
+                <th width="10%">优惠情况</th>
+                <th width="10%">备注</th>
+            </tr>
+            {% for info in m_info%}
+            <tr>
+                <td><li>{{  info.id }}</li></td>
+                <td><li><input type="number" name="m_money" value="{{info.m_money}}"></li></td>
+                <td><li><input type="date" name="m_into_date" value="{{info.m_into_date|date:'Y-m-d'}}"></li></td>
+                <td><li><input type="number" name="m_regular_time" value="{{info.m_regular_time}}"></li></td>
+                <td><li><input type="number" name="m_special_time" value="{{info.m_special_time}}"></li></td>
+                <td><li><input type="text" name="m_discount_from" value="{{info.m_discount_from}}"></li></td>
+                <td><li><input type="text" name="m_note" value="{{info.m_note}}"></li></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</ul>
+
+</body>
+</html>

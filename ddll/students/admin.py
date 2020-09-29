@@ -53,6 +53,13 @@ class ClassDetailInfoAdmin(admin.ModelAdmin):
     list_filter = ['c_id']
 
 
+class ClassUserInfoAdmin(admin.ModelAdmin):
+    list_display = ['u_name', 'u_pwd', 'u_type', 'u_nickname']
+    search_fields = ['u_name', 'u_pwd', 'u_type', 'u_nickname']
+    list_per_page = 10
+    list_filter = ['u_name']
+
+
 admin.site.register(StudentInfo, StudentAdmin)
 admin.site.register(CourseInfo, CourseAdmin)
 admin.site.register(TeacherInfo, TeacherAdmin)
@@ -61,7 +68,9 @@ admin.site.register(ClassInfo, ClassAdmin)
 admin.site.register(StudentClassInfo,StudentClassAdmin)
 admin.site.register(ClassDetailInfo, ClassDetailInfoAdmin)
 admin.site.register(CourseTypeInfo)
-
+admin.site.register(UserInfo, ClassUserInfoAdmin)
+admin.site.site_title = "搭搭乐乐管理系统"
+admin.site.site_header = "搭搭乐乐管理系统"
 
 
 

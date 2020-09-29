@@ -4,6 +4,12 @@ body{
     font-family: 'Microsoft Yahei';
 }
 
+
+.header{
+    background-color: white;
+}
+
+
 .s_body{
     background-color: #737272;
     margin: 1% 5%;
