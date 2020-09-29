@@ -157,5 +157,5 @@ def student_add_handle(request):
     if m_money != "" and m_pay_date != "" and m_usually != "":
         s_info = StudentInfo.objects.get(s_id=student1)
         MoneyInfo.objects.create(s_info.id, m_money, m_pay_date, m_usually, m_special, m_discount, m_note)
-    context = {'s_name':s_name,"s_gender":s_gender,"s_phone":s_phone,"s_birthday":s_birthday,"s_into":s_into,"s_note":s_note}
+    context = {'s_name': s_name, "s_gender": s_gender, "s_phone": s_phone, "s_birthday": s_birthday, "s_into":s_into, "s_note":s_note}
     return render(request,'students/student_add.html', context)
