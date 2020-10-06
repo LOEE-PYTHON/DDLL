@@ -102,7 +102,7 @@ WSGI_APPLICATION = 'ddll.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ddll3',
+        'NAME': 'ddll',
         'USER': 'root',
         'HOST': '127.0.0.1',
         'PORT': '3306',
