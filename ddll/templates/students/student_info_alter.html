@@ -39,10 +39,7 @@
                     <input type="radio" name="s_status" value="False" checked="checked">停课
                     {%endif%}
                     </li>
-
-                </td>
-                <td width="50%>
-                    <li>出生日期：<input type="date" name="s_birthday" value={{s_birthday|date:'Y-m-d'}}></li>
+                    <li>出生日期：<input type="date" maxlength="10" name="s_birthday" value={{s_birthday|date:'Y-m-d'}}></li>
                     <li>联系方式：<input type="text" name="s_phone" value={{s_phone}}></li>
                     <li>报名日期：<input type="date" name="s_into" value={{s_into|date:'Y-m-d'}}></li>
                     <li>备注：<input type="text" name="s_note" value={{s_note}}></li>
@@ -66,7 +63,7 @@
             {% for info in m_info%}
             <tr>
                 <td><li>{{  info.id }}</li></td>
-                <td><li><input type="number" name="m_money" value="{{info.m_money}}"></li></td>
+                <td><li><input type="number" maxlength="1" name="m_money" value="{{info.m_money}}"></li></td>
                 <td><li><input type="date" name="m_into_date" value="{{info.m_into_date|date:'Y-m-d'}}"></li></td>
                 <td><li><input type="number" name="m_regular_time" value="{{info.m_regular_time}}"></li></td>
                 <td><li><input type="number" name="m_special_time" value="{{info.m_special_time}}"></li></td>

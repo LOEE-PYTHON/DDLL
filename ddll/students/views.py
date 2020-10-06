@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
-from students.models import StudentInfo, MoneyInfo, StudentClassInfo, ClassDetailInfo, UserInfo
+from students.models import StudentInfo, MoneyInfo, StudentClassInfo, ClassDetailInfo, UserInfo, TeacherInfo,ClassInfo
 
 
 def index(request):
@@ -157,6 +157,26 @@ def student_view_handle(request):
         # test.append(kc_id)
 
     context = {'s_info': s_info, 's_money': s_money, 'classinfo': sk_info, 'classdetail': cl_info}
+
+    # cl_info = []
+    # sk_info = []
+    # ls_info = []
+    # for s in s_class_detail:
+    #     kc_id = s.c_id_id
+    #
+    #     s_class = StudentClassInfo.objects.filter(id=kc_id)
+    #     # for info in s_class:
+    #     #     teacherinfo = TeacherInfo.objects.get(id = info.sc_teacher_name_id)
+    #     #     classinfo = ClassInfo.objects.get(id = info.sc_bj_id_id)
+    #     sk_info.append(classinfo)
+    #     # ls_info.append(teacherinfo)
+    #     cl_info.append(s)
+    #     # test.append(kc_id)
+    #
+    # context = {'s_info': s_info, 's_money': s_money,
+    #            'classinfo': sk_info, 'classdetail': cl_info,
+    #            'sk_info':sk_info, 'ls_info':ls_info
+    #            }
     # context = {'test': test, 'test1': test1, 's_info': s_info, 's_money': s_money, 'classinfo': sk_info, 'classdetail': cl_info}
     return render(request, 'students/student_view.html', context)
 
