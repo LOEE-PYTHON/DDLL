@@ -26,9 +26,11 @@ SECRET_KEY = '5lr5cs#0cbp!vh=t3tby%%sgbv7^7^mr%g6w&j5x(shdbm-hr!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
 # ALLOWED_HOSTS = ['*',]
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['192.168.7.11','localhost']
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -100,7 +102,7 @@ WSGI_APPLICATION = 'ddll.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ddll',
+        'NAME': 'ddll3',
         'USER': 'root',
         'HOST': '127.0.0.1',
         'PORT': '3306',
@@ -130,12 +132,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'ddll/static')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, '/static/'),
 ]
-#
+
 #
 # LOGIN_REDIRECT_URL = '/'
 #
