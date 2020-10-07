@@ -85,9 +85,9 @@ class MoneyInfoManager(models.Manager):
     def get_queryset(self):
         return super(MoneyInfoManager, self).get_queryset().filter(isDelete=False)
 
-    def create(self, s_id, m_money, m_pay_date, m_usually, m_special, m_discount, m_note ):
+    def create(self, s_id, m_money, m_pay_date, m_usually, m_special, m_discount, m_note):
         moneyinfo = MoneyInfo()
-        moneyinfo.m_id_id = s_id
+        moneyinfo.m_id = s_id
         moneyinfo.m_money = m_money
         moneyinfo.m_into_date = m_pay_date
         moneyinfo.m_regular_time = m_usually

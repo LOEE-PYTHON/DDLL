@@ -206,7 +206,7 @@ def student_add_handle(request):
     m_discount = request.POST.get('m_discount')
     m_note = request.POST.get('m_note')
     if m_money != "" and m_pay_date != "" and m_usually != "":
-        s_info = StudentInfo.objects.get(s_id=student1)
+        s_info = StudentInfo.objects.get(s_id=student1.s_id)
         MoneyInfo.objects.create(s_info.id, m_money, m_pay_date, m_usually, m_special, m_discount, m_note)
 
     context = {'s_name': s_name, "s_gender": s_gender, "s_phone": s_phone, "s_birthday": s_birthday, "s_into":s_into, "s_note":s_note}
