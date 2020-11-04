@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>新增课程信息</title>
+	<script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="../../static/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../static/css/bootstrap.min.css">
+  <!-- 返回按钮 -->
+  <script type="text/javascript">
+      $(document).on('click','.goback',function(){
+    window.history.back();
+  })
+  </script>
+
+
+  <!-- 表格动态增删 -->
+<!-- <script type="text/javascript"></script> -->
+<script type="text/javascript">// Example: obj = findObj("image1"); 
+
+function findObj(theObj, theDoc) 
+{ 
+var p, i, foundObj; 
+if(!theDoc) theDoc = document; 
+if( (p = theObj.indexOf("?")) > 0 && parent.frames.length) 
+{ 
+theDoc = parent.frames[theObj.substring(p+1)].document; 
+theObj = theObj.substring(0,p); 
+} 
+if(!(foundObj = theDoc[theObj]) && theDoc.all) 
+foundObj = theDoc.all[theObj]; 
+for (i=0; !foundObj && i < theDoc.forms.length; i++) 
+foundObj = theDoc.forms[i][theObj]; 
+for(i=0; !foundObj && theDoc.layers && i < theDoc.layers.length; i++) 
+foundObj = findObj(theObj,theDoc.layers[i].document); 
+if(!foundObj && document.getElementById) 
+foundObj = document.getElementById(theObj); 
+return foundObj; 
+} 
+
+
+//添加一行学习简历 
+function LearnAddSignRow(){ //读取最后一行的行号，存放在LearnTRLastIndex文本框中 
+
+
+var LearnTRLastIndex = findObj("LearnTRLastIndex",document); 
+var rowID = parseInt(LearnTRLastIndex.value); 
+
+var signFrame = findObj("LearnInfoItem",document); 
+//添加行 
+var newTR = signFrame.insertRow(signFrame.rows.length); 
+newTR.id = "LearnItem" + rowID; 
+
+
+//添加列:序号 
+var newNameTD=newTR.insertCell(0); 
+//添加列内容 
+newNameTD.innerHTML = "<input name='sid" + rowID + "' id='sid" + rowID + "' type='text' value= 0 style/>"; 
+
+//添加列:毕业院校 
+var newNameTD=newTR.insertCell(1); 
+//添加列内容 
+newNameTD.innerHTML = "<input name='sname" + rowID + "' id='sname" + rowID + "' type='text' style='width:100%' />"; 
+
+// //添加列:所学专业 
+// var newEmailTD=newTR.insertCell(2); 
+// //添加列内容 
+// newEmailTD.innerHTML = "<input name='sleave" + rowID + "' id='sleave" + rowID + "' type='checkbox' style='width:100%' />"; 
+
+//添加列:所学专业 
+var newEmailTD=newTR.insertCell(2); 
+//添加列内容 
+newEmailTD.innerHTML = '<div class="checkbox"><label><input name='sleave" + rowID + "' id='sleave" + rowID + "' type='checkbox' style='width:100%' /></label></div>'; 
+
+                                                                                          
+//添加列:学制 
+var newTelTD=newTR.insertCell(3); 
+//添加列内容 
+newTelTD.innerHTML = "<input name='snote" + rowID + "' id='txtTel" + rowID + "' type='text'  />"; 
+
+// //添加列:学位 
+// var newMobileTD=newTR.insertCell(4); 
+// //添加列内容 
+// newMobileTD.innerHTML = "<input name='txtMobile" + rowID + "' id='txtMobile" + rowID + "' type='text'  />"; 
+
+// //添加列:学习方式 
+// var newMobileTD=newTR.insertCell(5); 
+// //添加列内容 
+// newMobileTD.innerHTML = "<input name='txtMobile" + rowID + "' id='txtMobile" + rowID + "' type='text'  />"; 
+
+//添加列:删除按钮 
+var newDeleteTD=newTR.insertCell(4); 
+//添加列内容 
+newDeleteTD.innerHTML = "<div align='center'><input class='btn btn-success' id='btndel" + rowID + "' type='button' value='删除' onclick=\"LearnDeleteRow('LearnItem" + rowID + "')\"  /></div>"; 
+
+//将行号推进下一行 
+LearnTRLastIndex.value = (rowID + 1).toString() ; 
+} 
+//删除指定行 
+function LearnDeleteRow(rowid){ 
+var signFrame = findObj("LearnInfoItem",document); 
+var signItem = findObj(rowid,document); 
+
+//获取将要删除的行的Index 
+var rowIndex = signItem.rowIndex; 
+
+//删除指定Index的行 
+signFrame.deleteRow(rowIndex); 
+
+} 
+
+</script>
+
+<!-- 表格动态增删 -->
+
+
+    <style type="text/css">
+
+        .table > tbody > tr > td {
+          vertical-align: middle;
+          text-align: center;
+        }
+
+        .table > thead > tr > th {
+          vertical-align: middle;
+          text-align: center;
+        }
+        input{
+          border: 0px;  
+        }
+
+    </style>
+</head>
+<body>
+
+  <div class="container-fluid">
+      <ol class="breadcrumb">
+      <li class="active">教学管理
+      </li>
+      <li class="active">课程信息管理
+      </li>
+      <li class="active">新增课程信息
+      </li>
+  </ol>
+  <div class="container-fluid">
+    <button class="btn bg-primary goback" style="margin:-7px 0 0 -15px">返回
+    </button>
+    <button class="btn bg-primary" onClick="document.location.reload()" style="float:right;margin-top: -7px;margin-right: -15px">刷新
+    </button>
+  </div>
+
+  <div class="container-fluid">
+    <form class="form-horizontal">
+      <div class="row">
+        <div class="col-lg-2">
+
+
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-1 control-label">课程名称</label>
+                <div class="col-sm-3">
+                  <select style="height:35px">
+                    <option>LEGO9686</option>
+                    <option>LEGOWEDO2.0</option>
+                    <option>LEGOEV3</option>
+                    <option>LEGO0305</option>
+                  </select>
+<!--                   <input type="email" class="form-control" id="inputEmail3" placeholder="课程名称"> -->
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-1 control-label">教师姓名</label>
+                <div class="col-sm-3">
+                  <select style="height:35px">
+                    <option>周老师</option>
+                    <option>杨老师</option>
+                    <option>向老师</option>
+                    <option>刘老师</option>
+                  </select>
+<!--                   <input type="email" class="form-control" id="inputEmail3" placeholder="课程名称"> -->
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-1 control-label">课程小节主题</label>
+                <div class="col-sm-3">
+                  <select style="height:35px">
+                    <option>LEGO-减震小车</option>
+                    <option>LEGOWEDO2.0-爬杆的猴子</option>
+                    <option>LEGOEV3-旋转陀螺</option>
+                  </select>
+<!--                   <input type="email" class="form-control" id="inputEmail3" placeholder="课程名称"> -->
+                </div>
+              </div> 
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-1 control-label">上课日期</label>
+                <div class="col-sm-3">
+                  <input type="date" class="form-control" id="inputEmail3" >
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-1 control-label">消耗课时</label>
+                <div class="col-sm-3">
+                  <input type="number" class="form-control" id="inputEmail3" value="1">
+                </div>
+              </div>             
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-1 control-label">班级</label>
+                <div class="col-sm-3">
+                  <select style="height:35px">
+                    <option>wedo一班</option>
+                    <option>wedo二班</option>
+                    <option>wedo三班</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-1 control-label">学生</label>
+                <div class="col-sm-10">
+                    <div class="table-responsive">
+                      <table class="table table-bordered table-hover" id="LearnInfoItem">
+                        <thead>
+                          <tr>
+                            <th>学号</th>
+                            <th>姓名</th>
+                            <th>是否请假</th>
+                            <th>备注</th>
+                            <th>操作</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>DDLL0001</td>
+                            <td>张三</td>
+                            <td>
+                              <div class="checkbox">
+                                <label>
+                                  <input type="checkbox" name="">
+
+                                </label>
+                              </div>
+                            </td>
+                            <td>备注1</td>
+                            <td>
+                              <div class="btn-group">
+                                <button class="btn btn-success">修改</button>
+                                <button class="btn btn-success">删除</button>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>DDLL0002</td>
+                            <td>李四</td>
+                            <td>
+                              <div class="checkbox">
+                                <label>
+                                  <input type="checkbox" name="">
+                                  
+                                </label>
+                              </div>
+                            </td>
+                            <td>备注2</td>
+                            <td>
+                              <div class="btn-group">
+                                <button class="btn btn-success">修改</button>
+                                <button class="btn btn-success">删除</button>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>DDLL0003</td>
+                            <td>王五</td>
+                            <td>
+                              <div class="checkbox">
+                                <label>
+                                  <input type="checkbox" name="">
+                                  
+                                </label>
+                              </div>
+                            </td>
+                            <td>备注1</td>
+                            <td>
+                            <div class="btn-group">
+                                <button class="btn btn-success">修改</button>
+                                <button class="btn btn-success">删除</button>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>DDLL0004</td>
+                            <td>王麻子</td>
+                            <td>
+                              <div class="checkbox">
+                                <label>
+                                  <input type="checkbox" name="">
+                                  
+                                </label>
+                              </div>
+                            </td>
+                            <td>备注1</td>
+                            <td>
+                            <div class="btn-group">
+                                <button class="btn btn-success">修改</button>
+                                <button class="btn btn-success">删除</button>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>DDLL0005</td>
+                            <td>赵四</td>
+                            <td>
+                              <div class="checkbox">
+                                <label>
+                                  <input type="checkbox" name="">
+                                  
+                                </label>
+                              </div>
+                            </td>
+                            <td>备注1</td>
+                            <td>
+                            <div class="btn-group">
+                                <button class="btn btn-success">修改</button>
+                                <button class="btn btn-success">删除</button>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>DDLL0006</td>
+                            <td>王利民</td>
+                            <td>
+                              <div class="checkbox">
+                                <label>
+                                  <input type="checkbox" name="">
+                                  
+                                </label>
+                              </div>
+                            </td>
+                            <td>备注1</td>
+                            <td>
+                            <div class="btn-group">
+                                <button class="btn btn-success">修改</button>
+                                <button class="btn btn-success">删除</button>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                              <input class="btn btn-danger" name='LearnTRLastIndex' type='hidden' id='LearnTRLastIndex' value="1" />    
+                          </tr> 
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-1 control-label">增加临时上课学员</label>
+                <input class="btn btn-danger" style="text-align: right" type="button" name="LearnAdd" value="添加" onclick="LearnAddSignRow()" />
+              </div>
+
+
+              <div class="form-group">
+                <div class="col-sm-offset-5 col-sm-12">             
+                    <button type="submit" class="btn btn-default ">提交</button>
+                    <button type="reset" class="btn btn-danger r">重置</button>
+                </div>
+             </div>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             
+          </div>
+</form>
+</body>
+</html>

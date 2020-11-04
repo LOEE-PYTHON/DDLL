@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>新增班级表</title>
+	<script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="../../static/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../static/css/admin.css">
+	  <!-- 返回按钮 -->
+  <script type="text/javascript">
+      $(document).on('click','.goback',function(){
+    window.history.back();
+  })
+  </script>
+
+<!-- 打印功能 -->
+      <script language="javascript">
+    function preview(oper){
+        if (oper < 10){
+        bdhtml=window.document.body.innerHTML;//获取当前页的html代码
+        sprnstr="<!--startprint"+oper+"-->";//设置打印开始区域
+        eprnstr="<!--endprint"+oper+"-->";//设置打印结束区域
+        prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html
+        prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html
+        window.document.body.innerHTML=prnhtml;
+        window.print();
+        window.document.body.innerHTML=bdhtml;
+        } 
+        else {
+            window.print();
+        }
+    }
+    </script>
+
+    <script>
+      $(document).ready(function () {
+      $("#tab tr").attr("align", "center");
+      $("#but").click(function () {
+      var _len = $("#tab tr").length;
+      $("#tab").append("<tr id=" + _len + " align='center'>"
+      + "<td class='disabled'><select><option>幼儿小班3-4</option><option>幼儿大班5-6</option><option>初级A班7-8</option><option>初级B班7-8</option><option>初级C班8-9</option><option>中级10-16</option></select></td>"
+      + "<td class='disabled'><select><option>周老师</option><option>杨老师</option><option>向老师</option></select></td>"
+      + "<td class='disabled'><select><option >牛顿</option><option >爱迪生</option><option >wedo2.0</option><option >机械世界</option><option >python</option><option >EV3</option></select></td>"
+      + "<td class='disabled'><select><option value=''>一班</option><option value=''>二班</option><option value=''>三班</option><option value=''>四班</option><option value=''>五班</option><option value=''>六班</option><option value=''>七班</option><option value=''>八班</option></select></td>"
+      + "<td class='disabled'><select><option value=''>星期三</option><option value=''>星期四</option><option value=''>星期五</option><option value=''>星期六</option><option value=''>星期天</option></select></td>"
+      + "<td class='disabled' ><input type='time' class='td_width'></td>"
+      + "<td class='disabled' ><input type='time' class='td_width'></td>"
+      + "<td width='100px'></td>"
+      + "<td width='100px'></td>"
+      + "<td width='100px'></td>"
+      + "<td width='100px'></td>"
+      + "<td width='100px'></td>"
+      + "<td width='100px'></td>"
+      + "<td><a href=\'#\' class='btn btn-danger' onclick=\'deltr(" + _len + ")\'><span class='glyphicon glyphicon-remove'></span></a></td>"
+      + "</tr>");
+      // 调用单元格可以拖动的函数
+      tuodong();
+      });
+      });
+      //删除<tr/>
+      var deltr = function (index) {
+      var _len = $("#tab tr").length;
+      $("tr[id='" + index + "']").remove();//删除当前行
+      for (var i = index + 1, j = _len; i < j; i++) {
+      var nextTxtVal = $("#desc" + i).val();
+      $("tr[id=\'" + i + "\']")
+      .replaceWith("<tr id=" + (i - 1) + " align='center'>"
+      + "<td class='disabled'><select><option>幼儿小班3-4</option><option>幼儿大班5-6</option><option>初级A班7-8</option><option>初级B班7-8</option><option>初级C班8-9</option><option>中级10-16</option></select></td>"
+      + "<td class='disabled'><select><option>周老师</option><option>杨老师</option><option>向老师</option></select></td>"
+      + "<td class='disabled'><select><option >牛顿</option><option >爱迪生</option><option >wedo2.0</option><option >机械世界</option><option >python</option><option >EV3</option></select></td>"
+      + "<td class='disabled'><select><option value=''>一班</option><option value=''>二班</option><option value=''>三班</option><option value=''>四班</option><option value=''>五班</option><option value=''>六班</option><option value=''>七班</option><option value=''>八班</option></select></td>"
+      + "<td class='disabled'><select><option value=''>星期三</option><option value=''>星期四</option><option value=''>星期五</option><option value=''>星期六</option><option value=''>星期天</option></select></td>"
+      + "<td class='disabled' ><input type='time' class='td_width'></td>"
+      + "<td class='disabled' ><input type='time' class='td_width'></td>"
+      + "<td width='100px'></td>"
+      + "<td width='100px'></td>"
+      + "<td width='100px'></td>"
+      + "<td width='100px'></td>"
+      + "<td width='100px'></td>"
+      + "<td width='100px'></td>"
+      + "<td><a href=\'#\' class='btn btn-danger' onclick=\'deltr(" + (i-1) + ")\'><span class='glyphicon glyphicon-remove'></span></a></td>"
+      + "</tr>");
+      }
+      
+    }
+     
+      </script>
+
+
+
+    <style type="text/css">
+
+        .table > tbody > tr > td {
+     vertical-align: middle;
+     text-align: center;
+        }
+
+        .table > thead > tr > th {
+     vertical-align: middle;
+     text-align: center;
+        }
+
+    td.hover,th.hover{border:dotted 3px #f00 }
+    td.selected{background:#f00;color:#fff;}
+    td.disabled{background:#eee;color:#000}
+    #tdMove{position:absolute;display:none;border:dotted 3px #f00;background:#fff}
+    table{user-select:none;-moz-user-select:none}
+
+    td{
+      width: 60px;
+    }
+    input{
+      border: 0px;
+      text-align: center;
+      width: 62px;
+      /* readonly="true" */
+    }
+    .td_width{
+      width: 98px;
+    }
+
+</style>
+<!-- <table border="1">
+<script>
+        var s = ''
+        for (var i = 0; i < 10; i++) {
+            s += '<tr>'
+            for (var j = 0; j < 10; j++) s += '<td' + (Math.random() > 0.8 ? ' class="disabled"' : '' ) + '>' + i + '-' + j + '</td>'
+            s += '</tr>'
+        }
+        document.write(s)
+    </script>
+</table> -->
+<div id="tdMove"></div>
+
+
+
+
+
+</head>
+<body >
+	<div class="container-fluid">
+	 <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li class="active">班级信息管理
+                        </li>
+                        <li class="active">新增班级表
+                        </li>
+                    </ol>
+            <div class="container-fluid">
+					    <button class="btn bg-primary goback" style="margin:-7px 0 0 -15px">返回</button>
+					    <button class="btn bg-primary" onClick="document.location.reload()" style="float:right;margin-top: -7px;margin-right: -15px">刷新
+					    </button>
+					  </div>
+<p></p>
+
+              
+
+
+                   <form action="">
+                    <div class="text-right" >
+                          <!-- <input type=button name='button_export' value='打印'  onclick=preview(1) class="text-right"> -->
+                          <button class="btn btn-danger text-right" onclick=preview(1) >打印</button>
+                          <input type="submit" class="btn btn-danger text-right" value="保存">
+                          <p>
+                    </div>
+<!--startprint1-->
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                            <th colspan="12">we未分班学员</th>
+                          </thead>
+                          <tbody>
+                            <td>张三</td>
+                            <td>李四</td>
+                            <td>王五</td>
+                            <td>赵立新</td>
+                            <td>李希</td>
+                            <td>物理</td>
+                            <td>loee</td>
+                            <td>周回来了</td>
+                            <td>达到法定</td>
+                            <td>顶呱呱</td>
+                            <td>顶呱呱</td>
+                            <td>顶呱呱</td>
+                          </tbody>
+                          <tbody >
+                            <td height="40px"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tbody>
+                        </table>
+
+                    </div>
+
+                        <h1 style='text-align: center'>分班正文</h1>
+                        <br>
+                        <input type="text" class="btn btn-danger"    value="添加" id="but" >
+
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered " id="tab"  >
+                            <thead>
+                                <tr>
+                                    <th >级别</th>
+                                    <!-- <th width="85px">教学内容</th> -->
+                                    <th>上课教师</th>
+                                    <th>教室</th>
+                                    <th>班级</th>
+                                    <th colspan="3">上课时间</th>
+                                    <th colspan="6">学员</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody class="strdd">
+                         
+                            </tbody>
+
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+      </form> 
+<!--endprint1-->
+<script>
+    var tdMove = $('#tdMove'),px=5;//浮动块偏移量，不偏移鼠标移动过程会出现在这个div移动的情况，移动到td上无法响应高亮样式
+    function tuodong(){ 
+      $('td:not(.disabled)').mousedown(function (e) {
+        this.className = 'selected'
+        tdMove.html(this.innerHTML).css({ left: e.clientX + px, top: e.clientY + px }).show();;
+        $(document).mousemove(function (e) {
+            var el = e.target;
+            tdMove.css({ left: e.clientX + px, top: e.clientY + px });
+            if (el.tagName == 'TD' && el.className != 'disabled' && el.className != 'selected') {
+                $('td').removeClass('hover'); el.className = 'hover';
+            }
+        }).mouseup(function () {
+            $(document).unbind();
+
+            tdMove.hide();
+            var td = $('td.hover,td.selected')
+            if (td.length == 2) {
+                var s = td[1].innerHTML;
+                td[1].innerHTML = td[0].innerHTML;
+                td[0].innerHTML = s;
+            }
+            td.removeClass('hover selected')
+        });
+    });
+  };
+</script>
+
+</body>
+</html>

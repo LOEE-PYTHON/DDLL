@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>查看学生信息</title>
+	<script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="../../static/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../static/css/bootstrap.min.css">
+    <!-- 返回按钮 -->
+  <script type="text/javascript">
+      $(document).on('click','.goback',function(){
+    window.history.back();
+  })
+  </script>
+
+  <!-- 打印功能 -->
+      <script language="javascript">
+    function preview(oper){
+        if (oper < 10){
+        bdhtml=window.document.body.innerHTML;//获取当前页的html代码
+        sprnstr="<!--startprint"+oper+"-->";//设置打印开始区域
+        eprnstr="<!--endprint"+oper+"-->";//设置打印结束区域
+        prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html
+        prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html
+        window.document.body.innerHTML=prnhtml;
+        window.print();
+        window.document.body.innerHTML=bdhtml;
+        } 
+        else {
+            window.print();
+        }
+    }
+    </script>
+
+
+      <style type="text/css">
+
+        .table > tbody > tr > td {
+     vertical-align: middle;
+     text-align: center;
+        }
+
+        .table > thead > tr > th {
+     vertical-align: middle;
+     text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+  <div class="container-fluid">
+      <ol class="breadcrumb">
+      <li class="active">学生信息管理
+      </li>
+      <li class="active">学生基本信息
+      </li>
+  </ol>
+  <div class="container-fluid">
+    <button class="btn bg-primary goback" style="margin:-7px 0 0 -15px">返回
+    </button>
+    <button class="btn bg-primary" onClick="document.location.reload()" style="float:right;margin-top: -7px;margin-right: 10px">刷新
+    </button>
+    <button class="btn bg-primary btn-danger" onclick=preview(1) style="float:right;margin-top: -7px;margin-right: 10px">打印</button>
+  </div>
+  <p></p>
+  <!--startprint1-->
+  <div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr class="info">
+        <h3>学生基本信息</h3>
+        <th>姓名</th>
+        <th>学号</th>
+        <th>性别</th>
+        <th>出生日期</th>
+        <th>报名时间</th>
+        <th>手机号码</th>
+        <th>状态</th>
+        <th>备注</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{s_info.s_name}}</td>
+        <td>{{s_info.s_id}}</td>
+        <td>
+            {% if s_info.s_gender == "False" %}
+            女
+            {% else %}
+            男
+            {% endif %}
+        </td>
+        <td>{{s_info.s_birthday}}</td>
+        <td>{{s_info.s_into}}</td>
+        <td>{{s_info.s_phone}}</td>
+
+        <td>
+            {% if s_info.s_status == "False" %}
+            停课
+            {% else %}
+            在读
+            {% endif %}</td>
+        <td>{{s_info.s_note}}</td>
+    </tr>
+    </tbody>
+      </table>
+        <table class="table table-bordered table-hover ">
+        <thead>
+      <tr class="info">
+        <h3>学生缴费记录</h3>
+        <th>金额（元）</th>
+        <th>缴费日期</th>
+        <th>购买常规课数量</th>
+        <th>购买寒暑假课数量</th>
+        <th>优惠情况</th>
+        <th>备注</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in s_money %}
+    <tr>
+        <td>{{item.m_money}}</li></td>
+        <td>{{item.m_into_date}}</li></td>
+        <td>{{item.m_regular_time}}</li></td>
+        <td>{{item.m_special_time}}</li></td>
+        <td>{{item.m_note}}</li></td>
+        <td>{{item.m_discount_from}}</li></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+   </table>
+       <table class="table table-bordered table-hover ">
+        <thead>
+      <tr class="info">
+        <h3>学生上课记录</h3>
+        <th>课程大主题</th>
+        <th>课程小节</th>
+        <th>上课时间</th>
+        <th>消耗课程数量</th>
+        <th>上课班级ID</th>
+        <th>上课老师</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c_s1 in classinfo %}
+        {% for item in c_s1 %}
+      <tr>
+        <td>{{item.sc_section_theme}}</li></td>
+        <td>{{item.sc_date}}</td>
+        <td>{{item.sc_use_time}}</td>
+        <td>1</td>
+        <td>{{item.sc_bj_id_id}}</td>
+        <td>{{item.sc_teacher_name_id}}</td>
+      </tr>
+        {% endfor %}
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+	</div>
+  <!--endprint1-->
+</body>
+</html>

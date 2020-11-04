@@ -31,12 +31,12 @@ DEBUG = True
 
 # ALLOWED_HOSTS = ['*',]
 # ALLOWED_HOSTS = ['192.168.7.11','localhost']
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 
 # Application definition
 
 INSTALLED_APPS = (
-    'simpleui',
+    # 'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'students',
     'templatetags',
+    'dadalele',
 
 )
 
@@ -67,6 +68,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        # 加入simplepro的中间件
+    'simplepro.middlewares.SimpleMiddleware',
 ]
 
 
@@ -136,11 +139,18 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    # os.path.join(BASE_DIR, 'static/')
+    os.path.join(BASE_DIR,'static')
 ]
 
+# print('1',STATICFILES_DIRS)
+# print('2',STATIC_ROOT)
+# print('3',STATIC_URL)
 #
 # LOGIN_REDIRECT_URL = '/'
 #
 #
 # SESSION_SAVE_EVERY_REQUEST = True
+
+# AUTH_USER_MODEL = 'students.User'
+# AUTH_USER_MODEL = 'users.UserProfile'

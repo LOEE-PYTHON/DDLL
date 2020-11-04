@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>新增学习信息</title>
+	<script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="../../static/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../static/css/bootstrap.min.css">
+  <!-- 返回按钮 -->
+  <script type="text/javascript">
+      $(document).on('click','.goback',function(){
+    window.history.back();
+  })
+  </script>
+
+
+<script>
+  $(document).ready(function () {
+  $("#tab tr").attr("align", "center");
+  $("#but").click(function () {
+  var _len = $("#tab tr").length;
+  $("#tab").append("<tr id=" + _len + " align='center'>"
+  + "<td><input name='m_id" + _len  + "'  size='2'  id='m_id" + _len  + "' type='text'   value='"+_len+"' readonly='true'></td>"
+  + "<td><input name='m_money" + _len  + "' size='10' id='m_money" + _len  + "' type='text' ></td>"
+  + "<td><input name='m_pay_date" + _len  + "' size='10' id='m_pay_date" + _len  + "' type='text' ></td>"
+  + "<td><input name='m_usually" + _len  + "' size='10' id='m_usually" + _len  + "' type='text' ></td>"
+  + "<td><input name='m_special" + _len  + "' size='10' id='m_special" + _len  + "' type='text' ></td>"
+  + "<td><input name='m_discount" + _len  + "' size='10' id='m_discount" + _len  + "' type='text' ></td>"
+  + "<td><input name='m_note" + _len  + "' size='10' id='m_note" + _len  + "' type='text' ></td>"
+  + "<td><a href=\'#\' class='btn btn-success' onclick=\'deltr(" + _len + ")\'>删除</a></td>"
+  + "</tr>");
+  })
+  })
+  //删除<tr/>
+  var deltr = function (index) {
+  var _len = $("#tab tr").length;
+  $("tr[id='" + index + "']").remove();//删除当前行
+  for (var i = index + 1, j = _len; i < j; i++) {
+  var nextTxtVal = $("#desc" + i).val();
+  $("tr[id=\'" + i + "\']")
+  .replaceWith("<tr id=" + (i - 1) + " align='center'>"
+
+  + "<td><input name='m_id" + (i-1)  + "'  size='2'  id='m_id" + (i-1)  + "' type='text'   value='"+(i-1)+"' readonly='true'></td>"
+  + "<td><input name='m_money" + (i-1)  + "' size='10' id='m_money" + (i-1)  + "' type='text' ></td>"
+  + "<td><input name='m_pay_date" + (i-1)  + "' size='10' id='m_pay_date" + (i-1)  + "' type='text' ></td>"
+  + "<td><input name='m_usually" + (i-1)  + "' size='10' id='m_usually" + (i-1)  + "' type='text' ></td>"
+  + "<td><input name='m_special" + (i-1)  + "' size='10' id='m_special" + (i-1)  + "' type='text' ></td>"
+  + "<td><input name='m_discount" + (i-1)  + "' size='10' id='m_discount" + (i-1)  + "' type='text' ></td>"
+  + "<td><input name='m_note" + (i-1)  + "' size='10' id='m_note" + (i-1)  + "' type='text' ></td>"
+  + "<td><a href=\'#\' class='btn btn-success' onclick=\'deltr(" + (i-1) + ")\'>删除</a></td>"
+  + "</tr>");
+  }
+  
+  }
+  </script>
+
+
+<!-- 
+<script>
+  $(document).ready(function () {
+  $("#tab tr").attr("align", "center");
+  $("#but").click(function () {
+  var _len = $("#tab tr").length;
+  $("#tab").append("<tr id=" + _len + " align='center'>"
+  + "<td>" + _len - 1) + "</td>"
+  + "<td><input name='m_money" + (_len - 1) + "' size='10' id='m_money" + (_len - 1) + "' type='text' ></td>"
+  + "<td><input name='m_money" + (_len - 1) + "' size='10' id='m_money" + (_len - 1) + "' type='text' ></td>"
+  + "<td><input name='m_money" + (_len - 1) + "' size='10' id='m_money" + (_len - 1) + "' type='text' ></td>"
+  + "<td><input name='m_money" + (_len - 1) + "' size='10' id='m_money" + (_len - 1) + "' type='text' ></td>"
+  + "<td><input name='m_money" + (_len - 1) + "' size='10' id='m_money" + (_len - 1) + "' type='text' ></td>"
+  + "<td><input type='text' name='desc" + (_len - 1) + "' id='desc" + (_len - 1) + "' /></td>"
+  + "<td><a href=\'#\' onclick=\'deltr(" + (_len - 1) + ")\'>删除</a></td>"
+  + "</tr>");
+  })
+  })
+  //删除<tr/>
+  var deltr = function (index) {
+  var _len = $("#tab tr").length;
+  $("tr[id='" + (index-1) + "']").remove();//删除当前行
+  for (var i = index-1 , j = _len; i < j; i++) {
+  var nextTxtVal = $("#desc" + i).val();
+  $("tr[id=\'" + i + "\']")
+  .replaceWith("<tr id=" + (i - 1) + " align='center'>"
+  + "<td>" + i  + "</td>"
+  + "<td><input name='m_money" + (_len - 1) + "' size='10' id='m_money" + (_len - 1) + "' type='text' ></td>"
+  + "<td>Dynamic TR" + (i - 1) + "</td>"
+  + "<td>Dynamic TR" + (i - 1) + "</td>"
+  + "<td>Dynamic TR" + (i - 1) + "</td>"
+  + "<td>Dynamic TR" + (i - 1) + "</td>"
+  + "<td><input type='text' name='desc" + _len + "' id='desc" + _len + "' /></td>"
+  + "<td><a href=\'#\' onclick=\'deltr(" + (i - 1) + ")\'>删除</a></td>"
+  + "</tr>");
+  }
+  
+  }
+  </script> -->
+	
+
+
+  <!-- 表格动态增删 -->
+<!-- <script type="text/javascript">// Example: obj = findObj("image1"); 
+
+function findObj(theObj, theDoc) 
+{ 
+var p, i, foundObj; 
+if(!theDoc) theDoc = document; 
+if( (p = theObj.indexOf("?")) > 0 && parent.frames.length) 
+{ 
+theDoc = parent.frames[theObj.substring(p+1)].document; 
+theObj = theObj.substring(0,p); 
+} 
+if(!(foundObj = theDoc[theObj]) && theDoc.all) 
+foundObj = theDoc.all[theObj]; 
+for (i=0; !foundObj && i < theDoc.forms.length; i++) 
+foundObj = theDoc.forms[i][theObj]; 
+for(i=0; !foundObj && theDoc.layers && i < theDoc.layers.length; i++) 
+foundObj = findObj(theObj,theDoc.layers[i].document); 
+if(!foundObj && document.getElementById) 
+foundObj = document.getElementById(theObj); 
+return foundObj; 
+} 
+
+
+//添加一行学习简历 
+function LearnAddSignRow(){ //读取最后一行的行号，存放在LearnTRLastIndex文本框中 
+
+
+var LearnTRLastIndex = findObj("LearnTRLastIndex",document); 
+var rowID = parseInt(LearnTRLastIndex.value); 
+
+var signFrame = findObj("LearnInfoItem",document); 
+//添加行 
+var newTR = signFrame.insertRow(signFrame.rows.length); 
+newTR.id = "LearnItem" + rowID; 
+
+var _len = $("#LearnInfoItem tr").length;
+
+//添加列:序号 
+var newNameTD=newTR.insertCell(0); 
+//添加列内容 
+// newNameTD.innerHTML = "<input name='m_id'" + rowID + "' size='2' id='m_id" + rowID + "' type='text' value= 0 />"; 
+newNameTD.innerHTML = rowID; 
+
+//添加列:金额 
+var newNameTD=newTR.insertCell(1); 
+//添加列内容 
+newNameTD.innerHTML = "<input name='m_money" + rowID + "' size='10' id='m_money" + rowID + "' type='text'  />"; 
+
+//添加列:缴费日期 
+var newEmailTD=newTR.insertCell(2); 
+//添加列内容 
+newEmailTD.innerHTML = "<input name='m_pay_date" + rowID + "' id='m_pay_date" + rowID + "' type='date'  />"; 
+
+//添加列:购买常规课数量： 
+var newTelTD=newTR.insertCell(3); 
+//添加列内容 
+newTelTD.innerHTML = "<input name='m_usually" + rowID + "' id='m_usually" + rowID + "' type='number'  />"; 
+
+//添加列:购买特殊课数量： 
+var newMobileTD=newTR.insertCell(4); 
+//添加列内容 
+newMobileTD.innerHTML = "<input name='m_special" + rowID + "' id='m_special" + rowID + "' type='number'  />"; 
+
+//添加列:优惠情况 
+var newMobileTD=newTR.insertCell(5); 
+//添加列内容 
+newMobileTD.innerHTML = "<input name='m_discount" + rowID + "' id='m_discount" + rowID + "' type='text'  />"; 
+
+//添加列:备注 
+var newMobileTD=newTR.insertCell(6); 
+//添加列内容 
+newMobileTD.innerHTML = "<input name='m_note" + rowID + "' id='m_note" + rowID + "' type='text'  />"; 
+
+
+//添加列:删除按钮 
+var newDeleteTD=newTR.insertCell(7); 
+//添加列内容 
+newDeleteTD.innerHTML = "<div align='center'><input class='btn btn-success' id='txtDel" + rowID + "' type='button' value='删除' onclick=\"LearnDeleteRow('LearnItem" + rowID + "')\" class='inputStyle' /></div>"; 
+
+//将行号推进下一行 
+LearnTRLastIndex.value = (rowID + 1).toString() ; 
+} 
+//删除指定行 
+function LearnDeleteRow(rowid){ 
+var signFrame = findObj("LearnInfoItem",document); 
+var signItem = findObj(rowid,document); 
+
+//获取将要删除的行的Index 
+var rowIndex = signItem.rowIndex; 
+
+//删除指定Index的行 
+signFrame.deleteRow(rowIndex); 
+
+} 
+
+</script> -->
+
+<!-- 表格动态增删 -->
+
+
+      <style type="text/css">
+
+        .table > tbody > tr > td {
+     vertical-align: middle;
+     text-align: center;
+        }
+
+        .table > thead > tr > th {
+     vertical-align: middle;
+     text-align: center;
+        }
+        input{
+          border: 0px;
+        }
+
+    </style>
+</head>
+<body>
+
+  <div class="container-fluid">
+      <ol class="breadcrumb">
+      <li class="active">学生信息管理
+      </li>
+      <li class="active">学生基本信息
+      </li>
+  </ol>
+  <div class="container-fluid">
+    <button class="btn bg-primary goback" style="margin:-7px 0 0 -15px">返回
+    </button>
+    <button class="btn bg-primary" onClick="document.location.reload()" style="float:right;margin-top: -7px;margin-right: -15px">刷新
+    </button>
+  </div>
+
+  <div class="container-fluid">
+    <form action="/dadalele/student_add_handle/" class="form-horizontal" method="GET" name="s_info" id="s_info">
+      <h2>基本信息录入</h2>
+      <div class="row">
+        <div class="col-lg-2">
+
+
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-1 control-label">姓名</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control"  placeholder="姓名" name="s_name">
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-1 control-label">性别</label>
+                <div class="col-sm-10">
+                  
+                  <label class="radio-inline">
+                  <input type="radio" name="s_gender" id="s_gender" value="1"> 男
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="s_gender" id="s_gender" value="0"> 女
+                </label>
+
+                </div>
+              </div>
+             
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-1 control-label">出生日期</label>
+                <div class="col-sm-2">
+                  <input type="date" class="form-control" name="s_birthday" id="inputPassword3" placeholder="Password">
+                </div>
+              </div>
+
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-1 control-label">报名日期</label>
+                <div class="col-sm-2">
+                  <input type="date" class="form-control" name="s_into" id="s_into" placeholder="Password">
+                </div>
+             </div>
+
+             <div class="form-group">
+              <label for="inputPassword3" class="col-sm-1 control-label">手机号码</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" name="s_phone" id="s_phone" placeholder="手机号码">
+              </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-1 control-label">备注</label>
+                <div class="col-sm-4">
+                  <textarea class="form-control" rows="4" name="s_note" placeholder="备注信息（非必填）"></textarea>
+                </div>
+             </div> 
+
+              
+          </div>
+        
+
+    <div class="form-group">
+    <label class="btn-group-vertical"><h3 style="margin-top: 0px;margin-bottom: 0px;">缴费信息录入    </h3></label>
+    <input class="btn btn-danger" style="text-align: right" type="button" name="LearnAdd" value="添加" onclick="LearnAddSignRow()" id='but' />
+    <p></p>
+    </div>
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered" id="tab">
+          <thead>
+              <tr>
+                <th>序号</th>
+                <th>金额（元）</th>
+                <th>缴费日期</th>
+                <th>购买常规课数量</th>
+                <th>购买寒暑假课数量</th>
+                <th>优惠情况</th>
+                <th>备注</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+      </div>
+      <div class="form-group">
+                <div class="col-sm-offset-5 col-sm-10">             
+                    <button type="submit" class="btn btn-default">提交</button>
+                    <button type="reset" class="btn btn-danger">重置</button>
+                </div>
+      </div>
+</form>
+</body>
+</html>

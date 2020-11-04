@@ -1,0 +1,17 @@
+.navbar-brand{
+	padding: 5px 10px;
+}
+
+/* 巨幕的样式 */
+.jumbotron{
+	background: url('../img/111.jpa');
+	background-color: green;
+	color: white;
+	height: 400px;
+	margin-top: 50px;
+}
+#menu-top li{
+	background-color: pink;
+}
+
+

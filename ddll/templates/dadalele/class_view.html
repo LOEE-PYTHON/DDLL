@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>班级系统-查看分班</title>
+	<script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="../../static/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../static/css/admin.css">
+
+<!-- 打印功能 -->
+      <script language="javascript">
+    function preview(oper){
+        if (oper < 10){
+        bdhtml=window.document.body.innerHTML;//获取当前页的html代码
+        sprnstr="<!--startprint"+oper+"-->";//设置打印开始区域
+        eprnstr="<!--endprint"+oper+"-->";//设置打印结束区域
+        prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html
+        prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html
+        window.document.body.innerHTML=prnhtml;
+        window.print();
+        window.document.body.innerHTML=bdhtml;
+        } 
+        else {
+            window.print();
+        }
+    }
+    </script>
+    <style type="text/css">
+
+        .table > tbody > tr > td {
+     vertical-align: middle;
+     text-align: center;
+        }
+
+        .table > thead > tr > th {
+     vertical-align: middle;
+     text-align: center;
+        }
+
+</style>
+
+<div id="tdMove"></div>
+
+
+
+
+
+</head>
+<body>
+	<div class="container-fluid">
+	 <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li class="active">学生信息管理
+                        </li>
+                        <li class="active">学生基本信息
+                        </li>
+                    </ol>
+                      <div class="container-fluid">
+					    <button class="btn bg-primary goback" style="margin:-7px 0 0 -15px">返回
+					    </button>
+					    <button class="btn bg-primary" onClick="document.location.reload()" style="float:right;margin-top: -7px;margin-right: -15px">刷新
+					    </button>
+					  </div>
+                          <p>
+
+              <div class="panel panel-default">
+                        <div class="panel-heading">
+                            筛选
+                        </div>
+                        <div class="panel-body">
+                            <form role="form" class="form-inline">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="0">--上课老师--</option>
+                                        <option value="1">周老师</option>
+                                        <option value="2">杨老师</option>
+                                        <option value="3">向老师</option>
+                                    </select>
+                                    <select class="form-control">
+                                        <option value="0">--时间--</option>
+                                        <option value="1">周五</option>
+                                        <option value="2">周六</option>
+                                        <option value="3">周天</option>
+                                    </select>
+                                </div>
+                               
+                                <div class="form-group">
+     <!--                                <button type="submit" class="btn btn-default">查询</button>
+                                    <button type="button" class="btn btn-default">全部</button>  -->
+
+                                      <button type="button" class="btn btn-warning " type="float:right"><a href="../class_grouping" >修改</a></button>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class=" text-right" >
+                        <button class="btn btn-danger text-right" onclick=preview(1) >打印</button>
+                          <p>
+                    </div>
+<!--startprint1-->
+                    <h1 style='text-align: center'>分班正文（2020下期）</h1>
+  
+                    <div class="table-responsive">
+                        <table class="table table-bordered " >
+                            <thead>
+                                <tr>
+                                    <th>级别</th>
+                                    <th>教学内容</th>
+                                    <th>上课教师</th>
+                                    <th>班级名称</th>
+                                    <th>上课时间</th>
+                                    <th colspan="6">学员</th>
+                                    <!-- <th >未分班学员</th> -->
+                                </tr>
+                            </thead>
+                            <tbody class="strdd">
+
+                                <tr >
+                                    <td class="disabled">幼儿小班3—4岁</td>
+                                    <td>
+                                        DDL1.小小工程师
+                                    </td>
+                                    <td>周老师</td>
+                                    <td>牛顿一班</td>
+                                    <td>周五9：30-11：00</td>
+                                    <td>timmy</td>
+                                    <td>vin</td>
+                                    <td>张三</td>
+                                    <td>timmy</td>
+                                    <td>vin</td>
+                                    <td>张三</td>
+                                    <!-- <td rowspan="5"> -->
+                            <!--           <table class="table table-bordered">
+                                        <tbody>
+                                          <td></td>
+                                          <td></td>
+                                        </tbody>
+                                        <tbody>
+                                          <td></td>
+                                          <td></td>
+                                        </tbody>
+                                        <tbody>
+                                          <td></td>
+                                          <td></td>
+                                        </tbody>
+                                        <tbody>
+                                          <td></td>
+                                          <td></td>
+                                        </tbody>
+                                      </table> -->
+                                    <!-- </td> -->
+                                </tr>
+                                <tr >
+                                    <td>幼儿小班3—4岁</td>
+                                    <td>
+                                        DDL1.小小工程师
+                                    </td>
+                                    <td>周老师</td>
+                                    <td>牛顿一班</td>
+                                    <td>周五9：30-11：00</td>
+                                    <td>timmy</td>
+                                    <td>vin</td>
+                                    <td>张三</td>
+                                    <td>timmy</td>
+                                    <td>vin</td>
+                                    <td>张三</td>
+                                </tr>
+                                <tr >
+                                    <td>幼儿小班3—4岁</td>
+                                    <td>
+                                        DDL1.小小工程师
+                                    </td>
+                                    <td>周老师</td>
+                                    <td>牛顿一班</td>
+                                    <td>周五9：30-11：00</td>
+                                    <td>timmy</td>
+                                    <td>vin</td>
+                                    <td>张三</td>
+                                    <td>timmy</td>
+                                    <td>vin</td>
+                                    <td>张三</td>
+
+                                </tr>                                
+                            </tbody>
+
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        </div>
+<!--endprint1-->
+
+
+</body>
+</html>
